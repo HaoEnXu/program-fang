@@ -75,12 +75,61 @@ export default {
     // 登录
     login: function(e) {
       console.log("登录");
-      this.$router.push("/Home");
+      // this.$router.push("/Home");
+      var checkLoginRelult = app.checkLogin();
+      if (checkLoginRelult == "登录账号为空") {
+        alert("账号不能为空!");
+        return;
+      }
+      if (checkLoginRelult == "登录密码为空") {
+        alert("密码不能为空!");
+        return;
+      }
+      console.log("登录");
+      var alarm = {};
+      alarm.username = app.loginUsername;
+      alarm.password = app.loginPassword;
+      $.post("/user/doLogin", alarm, function(data) {
+        data1 = JSON.parse(data);
+        if (data1 == "登录成功！") {
+          window.location.href = "/main.jsp";
+        } else {
+          alert(data1);
+        }
+      });
     },
     // 注册
     toRegister: function(e) {
       console.log("注册");
       this.$router.push("/Home");
+    },
+    checkSpecificKey(str) {
+      var specialKey = "`~!#$^&*【】";
+      for (var i = 0; i < str.length; i++) {
+        if (specialKey.indexOf(str.substr(i, 1)) != -1) {
+          return false;
+        }
+      }
+      return true;
+    },
+    checkLogin() {
+      if (
+        app.loginUsername == null ||
+        app.loginUsername == "" ||
+        app.loginUsername.length == 0 ||
+        app.loginUsername == "undefined"
+      ) {
+        return "登录账号为空";
+      }
+      if (
+        app.loginPassword == null ||
+        app.loginPassword == "" ||
+        app.loginPassword.length == 0 ||
+        app.loginPassword == "undefined"
+      ) {
+        return "登录密码为空";
+      }
+      return "成功";
     }
   }
 };
@@ -148,7 +197,7 @@ export default {
         align-items: center;
         flex-direction: column;
         .el-form {
-          width:100%
+          width: 100%;
         }
         .loginBtn {
           width: 200px;
