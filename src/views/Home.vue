@@ -53,18 +53,74 @@
           </div>
         </div>
         <!-- 分页 -->
-        <div class="paging"></div>
+        <div class="paging">
+          <el-pagination
+            @size-change="handleSizeChange"
+            @current-change="handleCurrentChange"
+            :current-page="currentPage"
+            :page-size="pagesize"
+            layout="prev, pager, next"
+            :total="13"
+            :size="12"
+          ></el-pagination>
+        </div>
       </div>
     </div>
     <!-- 推荐区 -->
-    <div class="recommend">推荐区</div>
+    <div class="recommend">
+      <span class="recommend_title">爆款推荐</span>
+      <div class="recomment_content">
+        <div class="item_cover">
+          <div class="item_type">AJ1</div>
+          <div class="item_content" v-for="(item,index) in aj1" v-bind:key="index">
+            <div class="item_image" :style="{backgroundImage:'url('+item.url+')'}"></div>
+            <!-- 名字 -->
+            <span class="recomment_name">{{item.name}}</span>
+            <!-- 价格 -->
+            <span class="recomment_price">{{item.price}}</span>
+          </div>
+        </div>
+        <div class="item_cover">
+          <div class="item_type">AJ13</div>
+          <div class="item_content" v-for="(item,index) in aj13" v-bind:key="index">
+            <div class="item_image" :style="{backgroundImage:'url('+item.url+')'}"></div>
+            <!-- 名字 -->
+            <span class="recomment_name">{{item.name}}</span>
+            <!-- 价格 -->
+            <span class="recomment_price">{{item.price}}</span>
+          </div>
+        </div>
+      </div>
+      <span class="recommend_title">大牌云集</span>
+      <div class="recomment_content">
+        <div class="item_cover">
+          <div class="item_type">IPhone</div>
+          <div class="item_content" v-for="(item,index) in iphone" v-bind:key="index">
+            <div class="item_image" :style="{backgroundImage:'url('+item.url+')'}"></div>
+            <!-- 名字 -->
+            <span class="recomment_name">{{item.name}}</span>
+            <!-- 价格 -->
+            <span class="recomment_price">{{item.price}}</span>
+          </div>
+        </div>
+        <div class="item_cover">
+          <div class="item_type">XiaoMi</div>
+          <div class="item_content" v-for="(item,index) in xm" v-bind:key="index">
+            <div class="item_image" :style="{backgroundImage:'url('+item.url+')'}"></div>
+            <!-- 名字 -->
+            <span class="recomment_name">{{item.name}}</span>
+            <!-- 价格 -->
+            <span class="recomment_price">{{item.price}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
     <!-- 底栏 -->
     <div class="footer">底栏</div>
   </div>
 </template>
 
 <script type='text/ecmascript-6'>
-// import func from '../../vue-temp/vue-editor-bridge';
 export default {
   data() {
     return {
@@ -87,7 +143,7 @@ export default {
       slideIndex: 0,
       rightList: [],
       rightValue: "",
-      newValue = [
+      newValue: [
         {
           url: "/static/slideBar/儿童玩具/pic1.jpg",
           tips: "智能机器狗遥控动物对话走路机器人男女孩电动玩具1-6岁",
@@ -160,6 +216,34 @@ export default {
           price: "¥69.90",
           isNew: false
         }
+      ],
+      // 分页
+      currentPage: 1, //初始页
+      pagesize: 12,
+      // 热门推荐
+      aj1: [
+        { url: "/static/hotRecomment/shoes/1/2.jpg", price: "¥168.00", name: "AirJoran1 伦纳德" },
+        { url: "/static/hotRecomment/shoes/1/3.jpg", price: "¥168.00", name: "AirJoran1 黑粉脚趾" },
+        { url: "/static/hotRecomment/shoes/1/4.jpg", price: "¥168.00", name: "AirJoran1 骚粉" },
+        { url: "/static/hotRecomment/shoes/1/5.jpg", price: "¥168.00", name: "AirJoran1 鸳鸯拼接" }
+      ],
+      aj13: [
+        { url: "/static/hotRecomment/shoes/2/1.jpg", price: "¥168.00", name: "Air Jordan 13 OGChicago" },
+        { url: "/static/hotRecomment/shoes/2/2.jpg", price: "¥168.00", name: "Air Jordan 13 Playoffs" },
+        { url: "/static/hotRecomment/shoes/2/3.jpg", price: "¥168.00", name: "Air Jordan 13 蒂芙尼" },
+        { url: "/static/hotRecomment/shoes/2/4.jpg", price: "¥168.00", name: "Air Jordan 13 黑白熊猫" }
+      ],
+      iphone: [
+        { url: "/static/hotRecomment/electric/1/11pro.jpg", price: "¥168.00", name: "iPhone11pro" },
+        { url: "/static/hotRecomment/electric/1/iPhone8.jpg", price: "¥168.00", name: "iPhone8" },
+        { url: "/static/hotRecomment/electric/1/xr.jpg", price: "¥168.00", name: "iPhoneXR" },
+        { url: "/static/hotRecomment/electric/1/xs.jpg", price: "¥168.00", name: "iPhoneXS" }
+      ],
+      xm: [
+        { url: "/static/hotRecomment/electric/2/1.jpg", price: "¥168.00", name: "CC9PRO" },
+        { url: "/static/hotRecomment/electric/2/2.jpg", price: "¥168.00", name: "游戏本2019款" },
+        { url: "/static/hotRecomment/electric/2/3.jpg", price: "¥168.00", name: "小爱音箱" },
+        { url: "/static/hotRecomment/electric/2/4.jpg", price: "¥168.00", name: "mix3" }
       ]
     };
   },
@@ -178,17 +262,27 @@ export default {
       this.rightValue = param2;
     },
     // 向后台请求侧边栏对应详情数据
-    getSlideDetail:function(param){
+    getSlideDetail: function(param) {
       // 侧边栏对应index，根据对应的index获取对应的数据
-      var index = param
+      var index = param;
       // 发起请求-》 获取数据
       // 根据返回的结果赋值 -> 赋值给this.rightList
+    },
+    // 分页
+    handleSizeChange: function(pagesize) {
+      console.log(pagesize);
+    },
+    handleCurrentChange: function(currentPage) {
+      console.log(currentPage);
     }
+  },
+  beforeCreate: function() {
+    // 发起请求---获取第一页的数据---赋值给rightList
   },
   beforeMount: function() {
     // 发起请求，获取第一组数据，然后赋值
     this.rightValue = this.leftList[0];
-    this.rightList = newValue
+    this.rightList = this.newValue;
   }
 };
 </script>
@@ -300,15 +394,15 @@ export default {
   .slideBar {
     width: 100%;
     height: 600px;
-    background-color: #f5f5f5;
+    background-color: #fff;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
     flex-direction: row;
     .leftArea {
       width: 200px;
       height: 100%;
-      background-color: #f5f5f5;
+      background-color: #fff;
       display: flex;
       justify-content: flex-start;
       flex-direction: column;
@@ -320,10 +414,11 @@ export default {
         font-size: 16px;
         text-align: center;
         border: 1px solid #f1f1f1;
-        background-color: #f5f5f5;
+        background-color: #fff;
         color: #000;
         border-radius: 5px;
         font-weight: 400;
+        animation: show 0.5s ease-in-out;
         cursor: pointer;
         &:hover {
           background-color: #aaaaaa;
@@ -336,7 +431,7 @@ export default {
       }
     }
     .rightArea {
-      width: calc(100% - 232px);
+      width: calc(100% - 200px);
       height: calc(100% - 2px);
       border: 1px solid #ccc;
       display: flex;
@@ -362,10 +457,10 @@ export default {
           align-items: center;
           flex-direction: column;
           box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.2);
-          animation: all 0.5s linear;
           cursor: pointer;
           &:hover {
-            box-shadow: 0px 8px 8px rgba(0, 0, 0, 0.4);
+            animation: show 0.3s ease-in-out;
+            animation-fill-mode: forwards;
           }
           .itemImage {
             width: 100%;
@@ -407,17 +502,127 @@ export default {
           }
         }
       }
+      .paging {
+        width: 100%;
+        height: 10%;
+        position: relative;
+        .el-pagination {
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          transform: translate(-50%, -50%);
+        }
+      }
     }
   }
   .recommend {
-    width: 100%;
-    height: 500px;
-    background-color: #f2f2f2;
+    width: calc(100% - 40px);
+    background-color: #fff;
+    padding: 10px 20px;
+    .recommend_title {
+      display: block;
+      width: 100px;
+      height: 30px;
+      font-size: 20px;
+      color: #000;
+      border-bottom: 2px solid #000;
+      border-radius: 1px;
+    }
+    .recomment_content {
+      width: 100%;
+      height: 400px;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      flex-direction: column;
+      .item_cover {
+        width: 100%;
+        height: 180px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-direction: row;
+        border-radius: 20px;
+        .item_type {
+          width: 100px;
+          height: 180px;
+          line-height: 180px;
+          text-align: center;
+          font-weight: bold;
+          font-size: 30px;
+          color: #000;
+          text-shadow: 0 2px 2px rgb(250, 183, 0);
+        }
+        .item_content {
+          width: 200px;
+          height: 180px;
+          border: 1px solid #ccc;
+          box-shadow: 0 4px 4px #ccc;
+          border-radius: 20px;
+          &:hover {
+            animation: show 0.3s ease-in-out;
+            animation-fill-mode: forwards;
+          }
+          .item_image {
+            width: 100%;
+            height: 120px;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+          }
+          .recomment_name {
+            display: block;
+            width: 100%;
+            height: 20px;
+            line-height: 20px;
+            font-size: 16px;
+            color: #aaa;
+            text-align:center;
+          }
+          .recomment_price {
+            display: block;
+            width: 100%;
+            height: 40px;
+            line-height: 40px;
+            font-size: 22px;
+            line-height: 40px;
+            color: #ff0000;
+            font-weight: bold;
+            text-align: center;
+          }
+          
+        }
+      }
+    }
+    .shoes {
+      .AJ1 {
+        width: 100%;
+        height: 180px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-direction: row;
+        .AJ1_item {
+          width: 18%;
+          height: 100%;
+          border: 1px solid #ccc;
+        }
+      }
+    }
   }
   .footer {
     width: 100%;
     height: 300px;
     background-color: rgb(82, 43, 43);
+  }
+}
+@keyframes show {
+  0% {
+    box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.2);
+  }
+  100% {
+    transform: translateY(2px);
+    box-shadow: 0px 8px 8px rgba(0, 0, 0, 0.4);
   }
 }
 </style>
