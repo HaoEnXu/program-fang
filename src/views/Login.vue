@@ -75,28 +75,26 @@ export default {
     // 登录
     login: function(e) {
       console.log("登录");
-      // this.$router.push("/Home");
-      var checkLoginRelult = app.checkLogin();
-      if (checkLoginRelult == "登录账号为空") {
-        alert("账号不能为空!");
-        return;
-      }
-      if (checkLoginRelult == "登录密码为空") {
-        alert("密码不能为空!");
-        return;
-      }
-      console.log("登录");
-      var alarm = {};
-      alarm.username = app.loginUsername;
-      alarm.password = app.loginPassword;
-      $.post("/user/doLogin", alarm, function(data) {
-        data1 = JSON.parse(data);
-        if (data1 == "登录成功！") {
-          window.location.href = "/main.jsp";
-        } else {
-          alert(data1);
-        }
-      });
+      this.$router.push("/Home");
+      // var checkLoginRelult = this.checkLogin();
+      // if (checkLoginRelult == "登录账号为空") {
+      //   alert("账号不能为空!");
+      //   return;
+      // }
+      // if (checkLoginRelult == "登录密码为空") {
+      //   alert("密码不能为空!");
+      //   return;
+      // }
+      // var alarm = {};
+      // alarm = this.loginMsg
+      // $.post("/user/doLogin", alarm, function(data) {
+      //   data1 = JSON.parse(data);
+      //   if (data1 == "登录成功！") {
+      //     window.location.href = "/main.jsp";
+      //   } else {
+      //     alert(data1);
+      //   }
+      // });
     },
     // 注册
     toRegister: function(e) {
@@ -114,18 +112,18 @@ export default {
     },
     checkLogin() {
       if (
-        app.loginUsername == null ||
-        app.loginUsername == "" ||
-        app.loginUsername.length == 0 ||
-        app.loginUsername == "undefined"
+        this.loginMsg.loginUsername == null ||
+        this.loginMsg.loginUsername == "" ||
+        this.loginMsg.loginUsername.length == 0 ||
+        this.loginMsg.loginUsername == "undefined"
       ) {
         return "登录账号为空";
       }
       if (
-        app.loginPassword == null ||
-        app.loginPassword == "" ||
-        app.loginPassword.length == 0 ||
-        app.loginPassword == "undefined"
+        this.loginMsg.loginPassword == null ||
+        this.loginMsg.loginPassword == "" ||
+        this.loginMsg.loginPassword.length == 0 ||
+        this.loginMsg.loginPassword == "undefined"
       ) {
         return "登录密码为空";
       }
