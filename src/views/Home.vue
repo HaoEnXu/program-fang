@@ -413,7 +413,7 @@ export default {
 .homecover {
   width: calc(100% - 600px);
   padding: 100px 300px 0;
-  background-image: linear-gradient(to bottom, rgb(1, 13, 49), rgb(22, 3, 133));
+  background-image: linear-gradient(to bottom, rgb(152, 177, 253), rgb(220, 215, 247));
   position: relative;
   .header {
     position: absolute;
@@ -521,6 +521,7 @@ export default {
     justify-content: flex-start;
     align-items: center;
     flex-direction: row;
+    box-shadow:0px 3px 10px rgb(31, 75, 207);
     .leftArea {
       width: 200px;
       height: 100%;
@@ -645,10 +646,22 @@ export default {
       display: block;
       width: 100px;
       height: 30px;
-      font-size: 20px;
-      color: #000;
-      border-bottom: 2px solid #000;
+      font-size: 24px;
+      color: rgb(14, 13, 13);
       border-radius: 1px;
+      position: relative;
+      font-weight: bold;
+      margin: 30px 0;
+      &::after {
+        content: '';
+        width: 50px;
+        height: 2px;
+        background: rgb(243, 60, 60);
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%)
+      }
     }
     .recomment_content {
       width: 100%;
@@ -666,7 +679,7 @@ export default {
         flex-direction: row;
         border-radius: 20px;
         .item_type {
-          width: 100px;
+          width: 160px;
           height: 180px;
           line-height: 180px;
           text-align: center;
@@ -676,7 +689,7 @@ export default {
           text-shadow: 0 2px 2px rgb(250, 183, 0);
         }
         .item_content {
-          width: 200px;
+          width: 20%;
           height: 180px;
           border: 1px solid #ccc;
           box-shadow: 0 4px 4px #ccc;
