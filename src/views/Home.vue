@@ -115,8 +115,64 @@
         </div>
       </div>
     </div>
+    <!-- 猜你喜欢 -->
     <!-- 底栏 -->
-    <div class="footer">底栏</div>
+    <div class="footer">
+      <ul class="JD_banner">
+        <li>
+          <span class="icon_JD one"></span>
+          <span class="text_JD">品类齐全，轻松购物</span>
+        </li>
+        <li>
+          <span class="icon_JD two"></span>
+          <span class="text_JD">多仓直发，极速配送</span>
+        </li>
+        <li>
+          <span class="icon_JD three"></span>
+          <span class="text_JD">正品行货，精致服务</span>
+        </li>
+        <li>
+          <span class="icon_JD four"></span>
+          <span class="text_JD">天天低价，畅选无忧</span>
+        </li>
+      </ul>
+      <div class="bottomPart">
+        <ul class="bottom_list">
+          <li>关于我们</li>
+          <i></i>
+          <li>联系我们</li>
+          <i></i>
+          <li>联系客服</li>
+          <i></i>
+          <li>合作招商</li>
+          <i></i>
+          <li>商家帮助</li>
+          <i></i>
+          <li>营销中心</li>
+          <i></i>
+          <li>手机京东</li>
+          <i></i>
+          <li>友情链接</li>
+          <i></i>
+          <li>销售联盟</li>
+          <i></i>
+          <li>京东社区</li>
+          <i></i>
+          <li>风险监测</li>
+          <i></i>
+          <li>隐私政策</li>
+          <i></i>
+          <li>京东公益</li>
+          <i></i>
+          <li>English Site</li>
+        </ul>
+        <ul class="bottom_list2">
+          <li><span>京公网安备11000002000088号</span><span>京CP证070359号</span><span>互联网药品信息服务资格证编号(京)-经营性-2014-0008</span><span>新出发京季字第大120007号</span></li>
+          <li><span>互联网出版许可证编号新出网证(京)字150号</span><span>出版物经营许可证</span><span>网络文化经营许可证京网文(2014)2148-348号</span><span>违法和不良信息举报电话:4006561155</span></li>
+          <li><span>CopyrightC2004-2019京东JD.com版权所有</span><span>消费者维权热线:40060</span></li>
+        </ul>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -222,28 +278,92 @@ export default {
       pagesize: 12,
       // 热门推荐
       aj1: [
-        { url: "/static/hotRecomment/shoes/1/2.jpg", price: "¥168.00", name: "AirJoran1 伦纳德" },
-        { url: "/static/hotRecomment/shoes/1/3.jpg", price: "¥168.00", name: "AirJoran1 黑粉脚趾" },
-        { url: "/static/hotRecomment/shoes/1/4.jpg", price: "¥168.00", name: "AirJoran1 骚粉" },
-        { url: "/static/hotRecomment/shoes/1/5.jpg", price: "¥168.00", name: "AirJoran1 鸳鸯拼接" }
+        {
+          url: "/static/hotRecomment/shoes/1/2.jpg",
+          price: "¥168.00",
+          name: "AirJoran1 伦纳德"
+        },
+        {
+          url: "/static/hotRecomment/shoes/1/3.jpg",
+          price: "¥168.00",
+          name: "AirJoran1 黑粉脚趾"
+        },
+        {
+          url: "/static/hotRecomment/shoes/1/4.jpg",
+          price: "¥168.00",
+          name: "AirJoran1 骚粉"
+        },
+        {
+          url: "/static/hotRecomment/shoes/1/5.jpg",
+          price: "¥168.00",
+          name: "AirJoran1 鸳鸯拼接"
+        }
       ],
       aj13: [
-        { url: "/static/hotRecomment/shoes/2/1.jpg", price: "¥168.00", name: "Air Jordan 13 OGChicago" },
-        { url: "/static/hotRecomment/shoes/2/2.jpg", price: "¥168.00", name: "Air Jordan 13 Playoffs" },
-        { url: "/static/hotRecomment/shoes/2/3.jpg", price: "¥168.00", name: "Air Jordan 13 蒂芙尼" },
-        { url: "/static/hotRecomment/shoes/2/4.jpg", price: "¥168.00", name: "Air Jordan 13 黑白熊猫" }
+        {
+          url: "/static/hotRecomment/shoes/2/1.jpg",
+          price: "¥168.00",
+          name: "Air Jordan 13 OGChicago"
+        },
+        {
+          url: "/static/hotRecomment/shoes/2/2.jpg",
+          price: "¥168.00",
+          name: "Air Jordan 13 Playoffs"
+        },
+        {
+          url: "/static/hotRecomment/shoes/2/3.jpg",
+          price: "¥168.00",
+          name: "Air Jordan 13 蒂芙尼"
+        },
+        {
+          url: "/static/hotRecomment/shoes/2/4.jpg",
+          price: "¥168.00",
+          name: "Air Jordan 13 黑白熊猫"
+        }
       ],
       iphone: [
-        { url: "/static/hotRecomment/electric/1/11pro.jpg", price: "¥168.00", name: "iPhone11pro" },
-        { url: "/static/hotRecomment/electric/1/iPhone8.jpg", price: "¥168.00", name: "iPhone8" },
-        { url: "/static/hotRecomment/electric/1/xr.jpg", price: "¥168.00", name: "iPhoneXR" },
-        { url: "/static/hotRecomment/electric/1/xs.jpg", price: "¥168.00", name: "iPhoneXS" }
+        {
+          url: "/static/hotRecomment/electric/1/11pro.jpg",
+          price: "¥168.00",
+          name: "iPhone11pro"
+        },
+        {
+          url: "/static/hotRecomment/electric/1/iPhone8.jpg",
+          price: "¥168.00",
+          name: "iPhone8"
+        },
+        {
+          url: "/static/hotRecomment/electric/1/xr.jpg",
+          price: "¥168.00",
+          name: "iPhoneXR"
+        },
+        {
+          url: "/static/hotRecomment/electric/1/xs.jpg",
+          price: "¥168.00",
+          name: "iPhoneXS"
+        }
       ],
       xm: [
-        { url: "/static/hotRecomment/electric/2/1.jpg", price: "¥168.00", name: "CC9PRO" },
-        { url: "/static/hotRecomment/electric/2/2.jpg", price: "¥168.00", name: "游戏本2019款" },
-        { url: "/static/hotRecomment/electric/2/3.jpg", price: "¥168.00", name: "小爱音箱" },
-        { url: "/static/hotRecomment/electric/2/4.jpg", price: "¥168.00", name: "mix3" }
+        {
+          url: "/static/hotRecomment/electric/2/1.jpg",
+          price: "¥168.00",
+          name: "CC9PRO"
+        },
+        {
+          url: "/static/hotRecomment/electric/2/2.jpg",
+          price: "¥168.00",
+          name: "游戏本2019款"
+        },
+        {
+          url: "/static/hotRecomment/electric/2/3.jpg",
+          price: "¥168.00",
+          name: "小爱音箱"
+        },
+        {
+          url: "/static/hotRecomment/electric/2/4.jpg",
+          price: "¥168.00",
+          name: "mix3"
+        }
       ]
     };
   },
@@ -260,11 +380,13 @@ export default {
     chooseSlide: function(param1, param2) {
       this.slideIndex = param1;
       this.rightValue = param2;
+      this.getSlideDetail(this.slideIndex);
     },
     // 向后台请求侧边栏对应详情数据
     getSlideDetail: function(param) {
       // 侧边栏对应index，根据对应的index获取对应的数据
       var index = param;
+      console.log(index);
       // 发起请求-》 获取数据
       // 根据返回的结果赋值 -> 赋值给this.rightList
     },
@@ -577,7 +699,7 @@ export default {
             line-height: 20px;
             font-size: 16px;
             color: #aaa;
-            text-align:center;
+            text-align: center;
           }
           .recomment_price {
             display: block;
@@ -590,7 +712,6 @@ export default {
             font-weight: bold;
             text-align: center;
           }
-          
         }
       }
     }
@@ -612,8 +733,121 @@ export default {
   }
   .footer {
     width: 100%;
-    height: 300px;
-    background-color: rgb(82, 43, 43);
+    // height: 300px;
+    padding: 20px 0;
+    background-color: #fff;
+    overflow: hidden;
+    .JD_banner {
+      width: 100%;
+      padding: 0;
+      margin: 0;
+      list-style: none;
+      display: flex;
+      justify-content: space-around;
+      align-content: center;
+      flex-direction: row;
+      margin: 10px 0;
+      li {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        flex-direction: row;
+        height: 50px;
+        line-height: 50px;
+        .icon_JD {
+          width: 36px;
+          height: 42px;
+          &.one {
+            background-image: url("../assets/image/jd1.png");
+            background-size: 100%;
+            background-repeat: no-repeat;
+          }
+          &.two {
+            background-image: url("../assets/image/jd2.png");
+            background-size: 100%;
+            background-repeat: no-repeat;
+          }
+          &.three {
+            background-image: url("../assets/image/jd3.png");
+            background-size: 100%;
+            background-repeat: no-repeat;
+          }
+          &.four {
+            background-image: url("../assets/image/jd4.png");
+            background-size: 100%;
+            background-repeat: no-repeat;
+          }
+        }
+        .text_JD {
+          margin-left: 10px;
+          height: 50px;
+          font-size: 22px;
+          color: #000;
+          font-weight: bold;
+        }
+      }
+    }
+    .bottomPart {
+      width: 100%;
+      border-top: 1px solid #ccc;
+      .bottom_list {
+        width: calc(100% - 60px);
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+        height: 30px;
+        padding: 10px 30px;
+        li {
+          font-size: 12px;
+          color: #ccc;
+          &:hover {
+            color: #ff0000;
+            cursor: pointer;
+          }
+        }
+        i {
+          width: 1px;
+          height: 16px;
+          background-color: #ccc;
+        }
+      }
+      .bottom_list2 {
+        width: calc(100% - 60px);
+        list-style: none;
+        margin: 10px 0 0 0 ;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 30px;
+        padding: 10px 30px;
+        li {
+          width: 100%;
+          height: 20px;
+          margin-bottom: 5px;
+          
+          span {
+            display: inline-block;
+            font-size: 12px;
+            color: #ccc;
+            padding: 0 10px;
+            border-right: 1px solid #CCC;
+            cursor: pointer;
+            &:hover {
+              color: #ff0000;
+            }
+            &:last-child {
+              border: 0;
+            }
+          }
+        }
+      }
+    }
   }
 }
 @keyframes show {
