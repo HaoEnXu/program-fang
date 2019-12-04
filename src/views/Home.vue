@@ -469,7 +469,7 @@ export default {
   .topBanner {
     width: 100%;
     height: 80px;
-    background-color: #f5f5f5;
+    background-color: #fff;
     position: relative;
     .logo {
       width: 14%;
@@ -555,12 +555,14 @@ export default {
   .slideBar {
     width: 100%;
     height: 600px;
+    padding-top:40px;
     background-color: #fff;
     display: flex;
     justify-content: flex-start;
     align-items: center;
     flex-direction: row;
     box-shadow: 0px 3px 10px rgb(31, 75, 207);
+    overflow: hidden;
     .leftArea {
       width: 200px;
       height: 100%;

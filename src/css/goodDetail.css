@@ -1,0 +1,242 @@
+.topCover {
+  width: 100%;
+  height: 100%;
+}
+.topCover .topBanner {
+  width: calc(100% - 400px);
+  height: 50px;
+  background-color: #252525;
+  padding: 0 200px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  font-size: 16px;
+  color: #fffdfd;
+  font-weight: 400;
+  cursor: pointer;
+}
+.topCover .topBanner .topLeft {
+  height: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: row;
+}
+.topCover .topBanner .topLeft .logo {
+  width: 100px;
+  height: 100%;
+  background-image: url("../assets/image/logo4.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.topCover .topBanner .topLeft .toIndex {
+  margin-left: 40px;
+  position: relative;
+}
+.topCover .topBanner .topLeft .toIndex::after {
+  content: "";
+  width: 0%;
+  height: 0px;
+  background-color: #ffffff;
+  position: absolute;
+  left: 50%;
+  bottom: -10px;
+  transition: all 0.2s;
+}
+.topCover .topBanner .topLeft .toIndex:hover {
+  color: #ffffff;
+  font-weight: 400;
+}
+.topCover .topBanner .topLeft .toIndex:hover::after {
+  left: 0%;
+  width: 100%;
+  height: 2px;
+}
+.topCover .topBanner .topRight {
+  height: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: row;
+}
+.topCover .topBanner .topRight .toUser {
+  width: 24px;
+  height: 24px;
+  background-image: url("../assets/image/user.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  margin: 0 40px;
+  position: relative;
+}
+.topCover .topBanner .topRight .toUser::after {
+  content: "";
+  width: 0%;
+  height: 0px;
+  background-color: #ffffff;
+  position: absolute;
+  left: 50%;
+  bottom: -10px;
+  transition: all 0.2s;
+}
+.topCover .topBanner .topRight .toUser:hover::after {
+  left: 0%;
+  width: 100%;
+  height: 2px;
+}
+.topCover .topBanner .topRight .toShopCar {
+  width: 24px;
+  height: 24px;
+  background-image: url("../assets/image/shopCar.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  position: relative;
+}
+.topCover .topBanner .topRight .toShopCar::after {
+  content: "";
+  width: 0%;
+  height: 0px;
+  background-color: #ffffff;
+  position: absolute;
+  left: 50%;
+  bottom: -10px;
+  transition: all 0.2s;
+}
+.topCover .topBanner .topRight .toShopCar:hover::after {
+  left: 0%;
+  width: 100%;
+  height: 2px;
+}
+.topCover .mainInfo {
+  width: calc(100% - 400px);
+  height: 500px;
+  padding: 20px 200px;
+  background-color: #fff;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+  align-items: center;
+}
+.topCover .mainInfo .good_image {
+  width: 600px;
+  height: 400px;
+  background-image: url("../../static/hotRecomment/shoes/1/2.jpg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.topCover .mainInfo .good_info {
+  width: 500px;
+  height: 400px;
+  position: relative;
+}
+.topCover .mainInfo .good_info .good_name {
+  display: block;
+  width: 100%;
+  height: 40px;
+  line-height: 40px;
+  font-size: 28px;
+  color: #222121;
+  text-align: left;
+}
+.topCover .mainInfo .good_info .good_price {
+  display: block;
+  width: 100%;
+  height: 40px;
+  line-height: 40px;
+  font-size: 30px;
+  font-weight: 400;
+  color: #e56a69;
+  text-align: left;
+}
+.topCover .mainInfo .good_info .good_intro {
+  display: block;
+  width: 100%;
+  height: 40px;
+  line-height: 40px;
+  font-size: 16px;
+  color: #272727;
+  text-align: left;
+  background-color: #f7f7f7;
+  border-radius: 2px;
+}
+.topCover .mainInfo .good_info .levelCover {
+  width: 100%;
+  height: 50px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: row;
+  margin-top: 30px;
+}
+.topCover .mainInfo .good_info .levelCover .levelTitle {
+  display: block;
+  width: 100px;
+  height: 50px;
+  line-height: 50px;
+  text-align: left;
+}
+.topCover .mainInfo .good_info .levelCover .good_level {
+  width: calc(100% - 50px);
+  height: 50px;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+  align-items: center;
+  position: relative;
+}
+.topCover .mainInfo .good_info .levelCover .good_level .levelItem {
+  padding: 10px 10px;
+  border: 2px solid #000;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+.topCover .mainInfo .good_info .levelCover .good_level .levelItem.active {
+  background-color: #000;
+  color: #fff;
+}
+.topCover .mainInfo .good_info .levelCover .good_level .levelItem:hover {
+  background-color: #000;
+  color: #fff;
+}
+.topCover .mainInfo .good_info .levelCover .good_level .levelItem .tips {
+  position: absolute;
+  bottom: -40px;
+  font-size: 16px;
+  color: #a3a3a3;
+  width: 300px;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 20px;
+  line-height: 20px;
+  text-align: center;
+}
+.topCover .mainInfo .good_info .shopCar {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: row;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+.topCover .mainInfo .good_info .shopCar .shopItem {
+  width: 150px;
+  height: 50px;
+  line-height: 50px;
+  padding: 0 20px;
+  border: 2px solid #000;
+  color: #000;
+  font-size: 18px;
+  cursor: pointer;
+}
+.topCover .mainInfo .good_info .shopCar .shopItem:hover {
+  background: #000;
+  color: #fff;
+}
+.topCover .mainInfo .good_info .shopCar .shopItem.addCar {
+  background: #000;
+  color: #fff;
+}

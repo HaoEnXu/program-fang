@@ -93,7 +93,6 @@ export default {
     const goodId = JSON.parse(localStorage.goodId);
     // 发请求，查数据
   },
-
   mounted: function() {}
 };
 </script>

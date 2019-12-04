@@ -1,7 +1,7 @@
 .homecover {
-  width: calc(100% - 600px);
-  padding: 100px 300px 0;
-  background-image: linear-gradient(to bottom, #010d31, #160385);
+  width: calc(100% - 400px);
+  padding: 100px 200px 0;
+  background-image: linear-gradient(to bottom, #98b1fd, #dcd7f7);
   position: relative;
 }
 .homecover .header {
@@ -19,7 +19,7 @@
 .homecover .topBanner {
   width: 100%;
   height: 80px;
-  background-color: #f5f5f5;
+  background-color: #fff;
   position: relative;
 }
 .homecover .topBanner .logo {
@@ -105,11 +105,14 @@
 .homecover .slideBar {
   width: 100%;
   height: 600px;
+  padding-top: 40px;
   background-color: #fff;
   display: flex;
   justify-content: flex-start;
   align-items: center;
   flex-direction: row;
+  box-shadow: 0px 3px 10px #1f4bcf;
+  overflow: hidden;
 }
 .homecover .slideBar .leftArea {
   width: 200px;
@@ -235,10 +238,22 @@
   display: block;
   width: 100px;
   height: 30px;
-  font-size: 20px;
-  color: #000;
-  border-bottom: 2px solid #000;
+  font-size: 24px;
+  color: #0e0d0d;
   border-radius: 1px;
+  position: relative;
+  font-weight: bold;
+  margin: 30px 0;
+}
+.homecover .recommend .recommend_title::after {
+  content: "";
+  width: 50px;
+  height: 2px;
+  background: #f33c3c;
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
 }
 .homecover .recommend .recomment_content {
   width: 100%;
@@ -258,7 +273,7 @@
   border-radius: 20px;
 }
 .homecover .recommend .recomment_content .item_cover .item_type {
-  width: 100px;
+  width: 160px;
   height: 180px;
   line-height: 180px;
   text-align: center;
@@ -268,7 +283,7 @@
   text-shadow: 0 2px 2px #fab700;
 }
 .homecover .recommend .recomment_content .item_cover .item_content {
-  width: 200px;
+  width: 20%;
   height: 180px;
   border: 1px solid #ccc;
   box-shadow: 0 4px 4px #ccc;
@@ -405,7 +420,7 @@
 .homecover .footer .bottomPart .bottom_list2 {
   width: calc(100% - 60px);
   list-style: none;
-  margin: 10px 0 0 0 ;
+  margin: 10px 0 0 0;
   padding: 0;
   display: flex;
   flex-direction: column;
@@ -424,7 +439,7 @@
   font-size: 12px;
   color: #ccc;
   padding: 0 10px;
-  border-right: 1px solid #CCC;
+  border-right: 1px solid #ccc;
   cursor: pointer;
 }
 .homecover .footer .bottomPart .bottom_list2 li span:hover {
