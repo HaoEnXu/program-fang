@@ -4,7 +4,7 @@
     <div class="topBanner">
       <div class="topLeft">
         <span class="logo"></span>
-        <span class="toIndex">首页</span>
+        <span class="toIndex" v-on:click="toHome">首页</span>
       </div>
       <div class="topRight">
         <span class="toUser"></span>
@@ -20,16 +20,19 @@
         <span class="good_price">{{itemDetail.price}}</span>
         <span class="good_intro">{{itemDetail.content}}</span>
         <!-- <span class="good_color">{{itemDetail.color}}</span> -->
-        <!-- 
-            1.全新闲置  全新无试穿。配件齐全。原盒方正
-            2.全新瑕疵  轻微瑕疵
-            3.九成新  下地试穿或者3次以下正常穿着
-            4.正常新 3-6次正常穿着
-        -->
         <div class="levelCover">
           <span class="levelTitle">新旧程度：</span>
           <div class="good_level">
-            <span class="levelItem" v-for="(item,index) in levelList" v-bind:key="index">{{item}}</span>
+            <div
+              class="levelItem"
+              v-bind:class="{active:index == current}"
+              v-for="(item,index) in levelList"
+              v-bind:key="index"
+              v-on:click="chooseType(index)"
+            >
+              {{item.content}}
+              <span class="tips" v-if="index == current">{{item.tips}}</span>
+            </div>
           </div>
         </div>
 
@@ -56,13 +59,41 @@ export default {
         price: "￥360",
         level: 1
       },
-      levelList: ["全新闲置", "全新瑕疵", "九成新", "正常新"]
+      levelList: [
+        {
+          content: "全新闲置",
+          tips: "全新无试穿、配件齐全、原盒方正"
+        },
+        {
+          content: "全新瑕疵",
+          tips: "轻微瑕疵"
+        },
+        {
+          content: "九成新",
+          tips: "下地试穿或者3次以下正常穿着"
+        },
+        {
+          content: "正常新",
+          tips: "3-6次正常穿着"
+        }
+      ],
+      current: 0
     };
+  },
+  methods: {
+    chooseType: function(params) {
+      console.log(params);
+      this.current = params
+    },
+    toHome:function (param) { 
+      this.$router.push('/home')
+     }
   },
   beforeMount: function() {
     const goodId = JSON.parse(localStorage.goodId);
     // 发请求，查数据
   },
+
   mounted: function() {}
 };
 </script>
@@ -72,10 +103,10 @@ export default {
   width: 100%;
   height: 100%;
   .topBanner {
-    width: calc(100% - 200px);
+    width: calc(100% - 400px);
     height: 50px;
     background-color: rgb(37, 37, 37);
-    padding: 0 100px;
+    padding: 0 200px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -182,8 +213,9 @@ export default {
     }
   }
   .mainInfo {
-    width: 100%;
+    width: calc(100% - 400px);
     height: 500px;
+    padding: 20px 200px;
     background-color: #fff;
     display: flex;
     justify-content: space-around;
@@ -192,7 +224,7 @@ export default {
     .good_image {
       width: 600px;
       height: 400px;
-      border: 1px solid #ccc;
+      // border: 1px solid #ccc;
       background-image: url("../../static/hotRecomment/shoes/1/2.jpg");
       background-size: contain;
       background-repeat: no-repeat;
@@ -201,7 +233,7 @@ export default {
     .good_info {
       width: 500px;
       height: 400px;
-      border: 1px solid #ccc;
+      // border: 1px solid #ccc;
       position: relative;
       .good_name {
         display: block;
@@ -255,6 +287,7 @@ export default {
           justify-content: space-around;
           flex-direction: row;
           align-items: center;
+          position: relative;
           .levelItem {
             padding: 10px 10px;
             border: 2px solid #000;
@@ -267,6 +300,18 @@ export default {
             &:hover {
               background-color: #000;
               color: #fff;
+            }
+            .tips {
+              position: absolute;
+              bottom: -40px;
+              font-size: 16px;
+              color: #a3a3a3;
+              width: 300px;
+              left: 50%;
+              transform: translateX(-50%);
+              height: 20px;
+              line-height: 20px;
+              text-align: center;
             }
           }
         }
@@ -291,11 +336,11 @@ export default {
           cursor: pointer;
           &:hover {
             background: #000;
-            color: #fff
+            color: #fff;
           }
           &.addCar {
             background: #000;
-            color: #fff
+            color: #fff;
           }
         }
       }
