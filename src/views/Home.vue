@@ -44,7 +44,12 @@
       <div class="rightArea">
         <!-- 内容区 -->
         <div class="itemCover">
-          <div class="itemDetail" v-for="(item,index) in rightList" v-bind:key="index">
+          <div
+            class="itemDetail"
+            v-for="(item,index) in rightList"
+            v-bind:key="index"
+            v-on:click="toDetail(item)"
+          >
             <div class="itemImage" :style="{backgroundImage:'url('+item.url+')'}"></div>
             <div class="itemIntro">
               <span class="itemPrice">{{item.price}}</span>
@@ -167,9 +172,22 @@
           <li>English Site</li>
         </ul>
         <ul class="bottom_list2">
-          <li><span>京公网安备11000002000088号</span><span>京CP证070359号</span><span>互联网药品信息服务资格证编号(京)-经营性-2014-0008</span><span>新出发京季字第大120007号</span></li>
-          <li><span>互联网出版许可证编号新出网证(京)字150号</span><span>出版物经营许可证</span><span>网络文化经营许可证京网文(2014)2148-348号</span><span>违法和不良信息举报电话:4006561155</span></li>
-          <li><span>CopyrightC2004-2019京东JD.com版权所有</span><span>消费者维权热线:40060</span></li>
+          <li>
+            <span>京公网安备11000002000088号</span>
+            <span>京CP证070359号</span>
+            <span>互联网药品信息服务资格证编号(京)-经营性-2014-0008</span>
+            <span>新出发京季字第大120007号</span>
+          </li>
+          <li>
+            <span>互联网出版许可证编号新出网证(京)字150号</span>
+            <span>出版物经营许可证</span>
+            <span>网络文化经营许可证京网文(2014)2148-348号</span>
+            <span>违法和不良信息举报电话:4006561155</span>
+          </li>
+          <li>
+            <span>CopyrightC2004-2019京东JD.com版权所有</span>
+            <span>消费者维权热线:40060</span>
+          </li>
         </ul>
       </div>
     </div>
@@ -204,73 +222,85 @@ export default {
           url: "/static/slideBar/儿童玩具/pic1.jpg",
           tips: "智能机器狗遥控动物对话走路机器人男女孩电动玩具1-6岁",
           price: "¥168.00",
-          isNew: false
+          isNew: false,
+          id: 1
         },
         {
           url: "/static/slideBar/儿童玩具/pic2.jpg",
           tips: "正版植物大战僵尸玩具全套3男孩大反击僵尸套装豌豆射手儿童公仔",
           price: "¥139.00",
-          isNew: false
+          isNew: false,
+          id: 2
         },
         {
           url: "/static/slideBar/儿童玩具/pic3.jpg",
           tips: "迪士尼儿童过家家玩具女孩化妆品套装无毒梳妆台盒冰雪奇缘",
           price: "¥49.00",
-          isNew: false
+          isNew: false,
+          id: 3
         },
         {
           url: "/static/slideBar/儿童玩具/pic4.jpg",
           tips: "迪士尼儿童化妆品公主彩妆盒套装无毒小女孩儿玩具指甲油可水洗",
           price: "¥68.00",
-          isNew: false
+          isNew: false,
+          id: 4
         },
         {
           url: "/static/slideBar/儿童玩具/pic5.jpg",
           tips: "儿童益智玩具早教音乐一两三周宝宝1-3岁开发智力生日礼物",
           price: "¥28.00",
-          isNew: false
+          isNew: false,
+          id: 5
         },
         {
           url: "/static/slideBar/儿童玩具/pic6.jpg",
           tips: "儿童钓鱼玩具套装开发智力一两三周宝宝益智礼物女孩儿",
           price: "¥69.00",
-          isNew: false
+          isNew: false,
+          id: 6
         },
         {
           url: "/static/slideBar/儿童玩具/pic7.jpg",
           tips: "儿童益智玩具2-3小孩7一岁十两三周岁宝宝多功能智力开发",
           price: "¥79.00",
-          isNew: false
+          isNew: false,
+          id: 7
         },
         {
           url: "/static/slideBar/儿童玩具/pic8.jpg",
           tips: "沃尔沃挖掘机双鹰电动遥控钩机挖土机儿童玩具合金版",
           price: "¥269.00",
-          isNew: false
+          isNew: false,
+          id: 8
         },
         {
           url: "/static/slideBar/儿童玩具/pic9.jpg",
           tips: "贝恩施儿童厨房玩具过家家套装仿真厨具做饭煮饭男女孩宝宝3-6岁7",
           price: "¥158.00",
-          isNew: false
+          isNew: false,
+          id: 9
         },
         {
           url: "/static/slideBar/儿童玩具/pic10.jpg",
           tips: "汇乐摇摆鹅儿童电动玩具会唱歌跳舞益智小鸭子宝宝1-3岁男孩抖音",
           price: "¥119.00",
-          isNew: false
+          isNew: false,
+          id: 10
         },
         {
           url: "/static/slideBar/儿童玩具/pic11.jpg",
           tips: "贝恩施儿童购物车玩具女孩 超市小手推车过家家宝宝",
           price: "¥37.90",
-          isNew: false
+          isNew: false,
+          id: 11
         },
         {
           url: "/static/slideBar/儿童玩具/pic12.jpg",
           tips: "特宝儿啄木鸟捉虫玩具喂小鸟鸡抓吃虫子俩岁女孩儿宝宝益智",
           price: "¥69.90",
-          isNew: false
+          isNew: false,
+          id: 12
         }
       ],
       // 分页
@@ -386,7 +416,6 @@ export default {
     getSlideDetail: function(param) {
       // 侧边栏对应index，根据对应的index获取对应的数据
       var index = param;
-      console.log(index);
       // 发起请求-》 获取数据
       // 根据返回的结果赋值 -> 赋值给this.rightList
     },
@@ -396,6 +425,12 @@ export default {
     },
     handleCurrentChange: function(currentPage) {
       console.log(currentPage);
+    },
+    // 跳转详情页
+    toDetail: function(param) {
+      this.$router.push("/GoodDetail");
+      localStorage.removeItem("goodId");
+      localStorage.setItem("goodId", JSON.stringify(param.id));
     }
   },
   beforeCreate: function() {
@@ -411,9 +446,13 @@ export default {
 
 <style lang='less' scoped='' type='text/css'>
 .homecover {
-  width: calc(100% - 600px);
-  padding: 100px 300px 0;
-  background-image: linear-gradient(to bottom, rgb(152, 177, 253), rgb(220, 215, 247));
+  width: calc(100% - 400px);
+  padding: 100px 200px 0;
+  background-image: linear-gradient(
+    to bottom,
+    rgb(152, 177, 253),
+    rgb(220, 215, 247)
+  );
   position: relative;
   .header {
     position: absolute;
@@ -521,7 +560,7 @@ export default {
     justify-content: flex-start;
     align-items: center;
     flex-direction: row;
-    box-shadow:0px 3px 10px rgb(31, 75, 207);
+    box-shadow: 0px 3px 10px rgb(31, 75, 207);
     .leftArea {
       width: 200px;
       height: 100%;
@@ -653,14 +692,14 @@ export default {
       font-weight: bold;
       margin: 30px 0;
       &::after {
-        content: '';
+        content: "";
         width: 50px;
         height: 2px;
         background: rgb(243, 60, 60);
         position: absolute;
         bottom: -10px;
         left: 50%;
-        transform: translateX(-50%)
+        transform: translateX(-50%);
       }
     }
     .recomment_content {
@@ -831,7 +870,7 @@ export default {
       .bottom_list2 {
         width: calc(100% - 60px);
         list-style: none;
-        margin: 10px 0 0 0 ;
+        margin: 10px 0 0 0;
         padding: 0;
         display: flex;
         flex-direction: column;
@@ -843,13 +882,13 @@ export default {
           width: 100%;
           height: 20px;
           margin-bottom: 5px;
-          
+
           span {
             display: inline-block;
             font-size: 12px;
             color: #ccc;
             padding: 0 10px;
-            border-right: 1px solid #CCC;
+            border-right: 1px solid #ccc;
             cursor: pointer;
             &:hover {
               color: #ff0000;
