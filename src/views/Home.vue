@@ -555,7 +555,7 @@ export default {
   .slideBar {
     width: 100%;
     height: 600px;
-    padding-top:40px;
+    padding-top: 40px;
     background-color: #fff;
     display: flex;
     justify-content: flex-start;

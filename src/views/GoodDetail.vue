@@ -7,8 +7,8 @@
         <span class="toIndex" v-on:click="toHome">首页</span>
       </div>
       <div class="topRight">
-        <span class="toUser"></span>
-        <span class="toShopCar"></span>
+        <span class="toUser" v-on:click="toPerson"></span>
+        <span class="toShopCar" v-on:click="toShopCar"></span>
       </div>
     </div>
     <!-- 主要内容区域 -->
@@ -37,8 +37,8 @@
         </div>
 
         <div class="shopCar">
-          <span class="shopItem buyNow">立即购买</span>
-          <span class="shopItem addCar">加入购物车</span>
+          <span class="shopItem buyNow" v-on:click="toShopCar">立即购买</span>
+          <span class="shopItem addCar" v-on:click="addShopCar">加入购物车</span>
         </div>
       </div>
     </div>
@@ -82,12 +82,20 @@ export default {
   },
   methods: {
     chooseType: function(params) {
-      console.log(params);
-      this.current = params
+      this.current = params;
     },
-    toHome:function (param) { 
-      this.$router.push('/home')
-     }
+    toHome: function(param) {
+      this.$router.push("/home");
+    },
+    // 跳转用户详情页
+    toPerson: function() {
+      this.$router.push('/person')
+    },
+    // 跳转购物车页
+    toShopCar: function(param) {
+      this.$router.push('/shopCar')
+    },
+    addShopCar: function(param) {}
   },
   beforeMount: function() {
     const goodId = JSON.parse(localStorage.goodId);
