@@ -1,0 +1,110 @@
+.topCover {
+  width: 100%;
+  height: 100%;
+}
+.topCover .topBanner {
+  width: calc(100% - 400px);
+  height: 50px;
+  background-color: #252525;
+  padding: 0 200px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  font-size: 16px;
+  color: #fffdfd;
+  font-weight: 400;
+  cursor: pointer;
+}
+.topCover .topBanner .topLeft {
+  height: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: row;
+}
+.topCover .topBanner .topLeft .logo {
+  width: 100px;
+  height: 100%;
+  background-image: url("../assets/image/logo4.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.topCover .topBanner .topLeft .toIndex {
+  margin-left: 40px;
+  position: relative;
+}
+.topCover .topBanner .topLeft .toIndex::after {
+  content: "";
+  width: 0%;
+  height: 0px;
+  background-color: #ffffff;
+  position: absolute;
+  left: 50%;
+  bottom: -10px;
+  transition: all 0.2s;
+}
+.topCover .topBanner .topLeft .toIndex:hover {
+  color: #ffffff;
+  font-weight: 400;
+}
+.topCover .topBanner .topLeft .toIndex:hover::after {
+  left: 0%;
+  width: 100%;
+  height: 2px;
+}
+.topCover .topBanner .topRight {
+  height: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: row;
+}
+.topCover .topBanner .topRight .toUser {
+  width: 24px;
+  height: 24px;
+  background-image: url("../assets/image/user.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  margin: 0 40px;
+  position: relative;
+}
+.topCover .topBanner .topRight .toUser::after {
+  content: "";
+  width: 0%;
+  height: 0px;
+  background-color: #ffffff;
+  position: absolute;
+  left: 50%;
+  bottom: -10px;
+  transition: all 0.2s;
+}
+.topCover .topBanner .topRight .toUser:hover::after {
+  left: 0%;
+  width: 100%;
+  height: 2px;
+}
+.topCover .topBanner .topRight .toShopCar {
+  width: 24px;
+  height: 24px;
+  background-image: url("../assets/image/shopCar.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  position: relative;
+}
+.topCover .topBanner .topRight .toShopCar::after {
+  content: "";
+  width: 0%;
+  height: 0px;
+  background-color: #ffffff;
+  position: absolute;
+  left: 50%;
+  bottom: -10px;
+  transition: all 0.2s;
+}
+.topCover .topBanner .topRight .toShopCar:hover::after {
+  left: 0%;
+  width: 100%;
+  height: 2px;
+}

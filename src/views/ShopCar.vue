@@ -127,23 +127,49 @@ export default {
     },
     // 全选
     allChoose: function(params) {
-      this.totalPrice = 0;
-      if (this.hasAll) {
-        this.dataList.forEach(val => {
-          val.choose = false;
+      if (this.dataList.length > 0) {
+        this.totalPrice = 0;
+        if (this.hasAll) {
+          this.dataList.forEach(val => {
+            val.choose = false;
+          });
+          this.chooseList = [];
+          this.hasAll = false;
+          this.canBuy = false;
+        } else {
+          this.chooseList = [];
+          this.dataList.forEach(val => {
+            val.choose = true;
+            this.chooseList.push(val);
+            this.totalPrice += parseInt(val.price);
+          });
+          this.hasAll = true;
+          this.canBuy = true;
+        }
+      } else {
+        this.$message({
+          message: '购物车是空的哟~',
+          type: 'warning'
         });
-        this.chooseList = [];
+      }
+    },
+    // 删除
+    deleteItem: function(param1, param2) {
+      const item = param1;
+      const index = param2;
+      this.dataList.splice(index, 1);
+      item.choose ? (this.totalPrice -= item.price) : "";
+      this.chooseList.forEach((val, index) => {
+        if (val.id == item.id) {
+          this.chooseList.splice(index, 1);
+        }
+      });
+      if (this.chooseList.length == this.dataList.length) {
+        this.hasAll = true;
+      }
+      if (this.chooseList == 0) {
         this.hasAll = false;
         this.canBuy = false;
-      } else {
-        this.chooseList = [];
-        this.dataList.forEach(val => {
-          val.choose = true;
-          this.chooseList.push(val);
-          this.totalPrice += parseInt(val.price);
-        });
-        this.hasAll = true;
-        this.canBuy = true;
       }
     }
   }
@@ -381,6 +407,7 @@ export default {
         top: 50%;
         left: 0;
         transform: translateY(-50%);
+        cursor: pointer;
         &.active {
           background-image: url("../assets/image/choose_active.png");
         }
@@ -399,7 +426,7 @@ export default {
       }
       .chooseNum {
         font-size: 16px;
-        font-weight: bold
+        font-weight: bold;
       }
     }
     .settleRight {
@@ -420,6 +447,7 @@ export default {
         font-weight: bold;
         background-color: rgb(116, 116, 116);
         color: rgb(226, 226, 226);
+        cursor: pointer;
         &.active {
           background-color: #000;
           color: #fff;
