@@ -10,7 +10,7 @@
       <div class="searchArea">
         <div class="searchInput">
           <el-input placeholder="请输入内容" v-model="serachValue">
-            <el-button slot="append" icon="el-icon-search" type="danger"></el-button>
+            <el-button slot="append" icon="el-icon-search" type="danger" v-on:click="toSearch()"></el-button>
           </el-input>
         </div>
         <div class="hotKey">
@@ -120,7 +120,6 @@
         </div>
       </div>
     </div>
-    <!-- 猜你喜欢 -->
     <!-- 底栏 -->
     <div class="footer">
       <ul class="JD_banner">
@@ -429,9 +428,19 @@ export default {
     // 跳转详情页
     toDetail: function(param) {
       this.$router.push("/GoodDetail");
-      localStorage.removeItem("goodId");
-      localStorage.setItem("goodId", JSON.stringify(param.id));
-    }
+      localStorage.removeItem("good");
+      localStorage.setItem("good", JSON.stringify(param));
+    },
+    // 跳转搜索页
+    toSearch:function (param) { 
+      if(this.serachValue) {
+        localStorage.removeItem("searchValue");
+        localStorage.setItem("searchValue", JSON.stringify(this.serachValue));
+        this.$router.push('/search')
+      } else {
+        this.$message('请输入搜索值')
+      }
+     }
   },
   beforeCreate: function() {
     // 发起请求---获取第一页的数据---赋值给rightList

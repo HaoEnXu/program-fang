@@ -35,7 +35,6 @@
             </div>
           </div>
         </div>
-
         <div class="shopCar">
           <span class="shopItem buyNow" v-on:click="toShopCar">立即购买</span>
           <span class="shopItem addCar" v-on:click="addShopCar">加入购物车</span>
@@ -98,7 +97,7 @@ export default {
     addShopCar: function(param) {}
   },
   beforeMount: function() {
-    const goodId = JSON.parse(localStorage.goodId);
+    console.log(JSON.parse(localStorage.good))
     // 发请求，查数据
   },
   mounted: function() {}

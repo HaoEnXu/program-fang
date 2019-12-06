@@ -4,7 +4,8 @@ import login from '../views/Login'
 import home from '../views/Home'
 import GoodDetail from '../views/GoodDetail'
 import shopCar from '../views/ShopCar'
-import person from '../views/Person.vue'
+import person from '../views/Person'
+import search from '../views/Search'
 
 Vue.use(Router)
 
@@ -39,6 +40,11 @@ export default new Router({
       path:'/person',
       name:'person',
       component:person
+    },
+    {
+      path:'/search',
+      nameL:'search',
+      component:search
     }
   ]
 })
