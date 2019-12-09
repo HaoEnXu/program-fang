@@ -1,7 +1,7 @@
 <template>
   <div class="homecover">
     <!-- 广告区域 -->
-    <div class="header"></div>
+    <!-- <div class="header"></div> -->
     <!-- 顶部信息栏 -->
     <div class="topBanner">
       <!-- logo -->
@@ -25,9 +25,11 @@
         </div>
       </div>
       <!-- person -->
-      <div class="personInfo" v-on:click="toUserPage">
-        <span class="userHead"></span>
-        <span class="userTips">下午好，{{userName}}</span>
+      <div class="banner_right">
+        <div class="personInfo" v-on:click="toUserPage">
+          <span class="userHead"></span>
+        </div>
+        <div class="to_shopCar" v-on:click="toShopCar"></div>
       </div>
     </div>
     <!-- 侧边展开区域 -->
@@ -77,7 +79,12 @@
       <div class="recomment_content">
         <div class="item_cover">
           <div class="item_type">AJ1</div>
-          <div class="item_content" v-for="(item,index) in aj1" v-bind:key="index">
+          <div
+            class="item_content"
+            v-for="(item,index) in aj1"
+            v-bind:key="index"
+            v-on:click="toDetail(item)"
+          >
             <div class="item_image" :style="{backgroundImage:'url('+item.url+')'}"></div>
             <!-- 名字 -->
             <span class="recomment_name">{{item.name}}</span>
@@ -87,7 +94,12 @@
         </div>
         <div class="item_cover">
           <div class="item_type">AJ13</div>
-          <div class="item_content" v-for="(item,index) in aj13" v-bind:key="index">
+          <div
+            class="item_content"
+            v-for="(item,index) in aj13"
+            v-bind:key="index"
+            v-on:click="toDetail(item)"
+          >
             <div class="item_image" :style="{backgroundImage:'url('+item.url+')'}"></div>
             <!-- 名字 -->
             <span class="recomment_name">{{item.name}}</span>
@@ -100,7 +112,12 @@
       <div class="recomment_content">
         <div class="item_cover">
           <div class="item_type">IPhone</div>
-          <div class="item_content" v-for="(item,index) in iphone" v-bind:key="index">
+          <div
+            class="item_content"
+            v-for="(item,index) in iphone"
+            v-bind:key="index"
+            v-on:click="toDetail(item)"
+          >
             <div class="item_image" :style="{backgroundImage:'url('+item.url+')'}"></div>
             <!-- 名字 -->
             <span class="recomment_name">{{item.name}}</span>
@@ -110,7 +127,12 @@
         </div>
         <div class="item_cover">
           <div class="item_type">XiaoMi</div>
-          <div class="item_content" v-for="(item,index) in xm" v-bind:key="index">
+          <div
+            class="item_content"
+            v-for="(item,index) in xm"
+            v-bind:key="index"
+            v-on:click="toDetail(item)"
+          >
             <div class="item_image" :style="{backgroundImage:'url('+item.url+')'}"></div>
             <!-- 名字 -->
             <span class="recomment_name">{{item.name}}</span>
@@ -218,6 +240,7 @@ export default {
       rightValue: "",
       newValue: [
         {
+          name: "智能机器狗遥控动物对话走路机器人男女孩电动玩具1-6岁",
           url: "/static/slideBar/儿童玩具/pic1.jpg",
           tips: "智能机器狗遥控动物对话走路机器人男女孩电动玩具1-6岁",
           price: "¥168.00",
@@ -225,6 +248,7 @@ export default {
           id: 1
         },
         {
+          name: "正版植物大战僵尸玩具全套3男孩大反击僵尸套装豌豆射手儿童公仔",
           url: "/static/slideBar/儿童玩具/pic2.jpg",
           tips: "正版植物大战僵尸玩具全套3男孩大反击僵尸套装豌豆射手儿童公仔",
           price: "¥139.00",
@@ -232,6 +256,7 @@ export default {
           id: 2
         },
         {
+          name: "迪士尼儿童过家家玩具女孩化妆品套装无毒梳妆台盒冰雪奇缘",
           url: "/static/slideBar/儿童玩具/pic3.jpg",
           tips: "迪士尼儿童过家家玩具女孩化妆品套装无毒梳妆台盒冰雪奇缘",
           price: "¥49.00",
@@ -239,6 +264,7 @@ export default {
           id: 3
         },
         {
+          name: "迪士尼儿童化妆品公主彩妆盒套装无毒小女孩儿玩具指甲油可水洗",
           url: "/static/slideBar/儿童玩具/pic4.jpg",
           tips: "迪士尼儿童化妆品公主彩妆盒套装无毒小女孩儿玩具指甲油可水洗",
           price: "¥68.00",
@@ -246,6 +272,7 @@ export default {
           id: 4
         },
         {
+          name: "儿童益智玩具早教音乐一两三周宝宝1-3岁开发智力生日礼物",
           url: "/static/slideBar/儿童玩具/pic5.jpg",
           tips: "儿童益智玩具早教音乐一两三周宝宝1-3岁开发智力生日礼物",
           price: "¥28.00",
@@ -253,6 +280,7 @@ export default {
           id: 5
         },
         {
+          name: "儿童钓鱼玩具套装开发智力一两三周宝宝益智礼物女孩儿",
           url: "/static/slideBar/儿童玩具/pic6.jpg",
           tips: "儿童钓鱼玩具套装开发智力一两三周宝宝益智礼物女孩儿",
           price: "¥69.00",
@@ -260,6 +288,7 @@ export default {
           id: 6
         },
         {
+          name: "儿童益智玩具2-3小孩7一岁十两三周岁宝宝多功能智力开发",
           url: "/static/slideBar/儿童玩具/pic7.jpg",
           tips: "儿童益智玩具2-3小孩7一岁十两三周岁宝宝多功能智力开发",
           price: "¥79.00",
@@ -267,6 +296,7 @@ export default {
           id: 7
         },
         {
+          name: "沃尔沃挖掘机双鹰电动遥控钩机挖土机儿童玩具合金版",
           url: "/static/slideBar/儿童玩具/pic8.jpg",
           tips: "沃尔沃挖掘机双鹰电动遥控钩机挖土机儿童玩具合金版",
           price: "¥269.00",
@@ -274,6 +304,7 @@ export default {
           id: 8
         },
         {
+          name: "贝恩施儿童厨房玩具过家家套装仿真厨具做饭煮饭男女孩宝宝3-6岁7",
           url: "/static/slideBar/儿童玩具/pic9.jpg",
           tips: "贝恩施儿童厨房玩具过家家套装仿真厨具做饭煮饭男女孩宝宝3-6岁7",
           price: "¥158.00",
@@ -281,6 +312,7 @@ export default {
           id: 9
         },
         {
+          name: "汇乐摇摆鹅儿童电动玩具会唱歌跳舞益智小鸭子宝宝1-3岁男孩抖音",
           url: "/static/slideBar/儿童玩具/pic10.jpg",
           tips: "汇乐摇摆鹅儿童电动玩具会唱歌跳舞益智小鸭子宝宝1-3岁男孩抖音",
           price: "¥119.00",
@@ -288,6 +320,7 @@ export default {
           id: 10
         },
         {
+          name: "贝恩施儿童购物车玩具女孩 超市小手推车过家家宝宝",
           url: "/static/slideBar/儿童玩具/pic11.jpg",
           tips: "贝恩施儿童购物车玩具女孩 超市小手推车过家家宝宝",
           price: "¥37.90",
@@ -295,6 +328,7 @@ export default {
           id: 11
         },
         {
+          name: "特宝儿啄木鸟捉虫玩具喂小鸟鸡抓吃虫子俩岁女孩儿宝宝益智",
           url: "/static/slideBar/儿童玩具/pic12.jpg",
           tips: "特宝儿啄木鸟捉虫玩具喂小鸟鸡抓吃虫子俩岁女孩儿宝宝益智",
           price: "¥69.90",
@@ -310,88 +344,104 @@ export default {
         {
           url: "/static/hotRecomment/shoes/1/2.jpg",
           price: "¥168.00",
-          name: "AirJoran1 伦纳德"
+          name: "AirJoran1 伦纳德",
+          level: 1
         },
         {
           url: "/static/hotRecomment/shoes/1/3.jpg",
           price: "¥168.00",
-          name: "AirJoran1 黑粉脚趾"
+          name: "AirJoran1 黑粉脚趾",
+          level: 2
         },
         {
           url: "/static/hotRecomment/shoes/1/4.jpg",
           price: "¥168.00",
-          name: "AirJoran1 骚粉"
+          name: "AirJoran1 骚粉",
+          level: 3
         },
         {
           url: "/static/hotRecomment/shoes/1/5.jpg",
           price: "¥168.00",
-          name: "AirJoran1 鸳鸯拼接"
+          name: "AirJoran1 鸳鸯拼接",
+          level: 4
         }
       ],
       aj13: [
         {
           url: "/static/hotRecomment/shoes/2/1.jpg",
           price: "¥168.00",
-          name: "Air Jordan 13 OGChicago"
+          name: "Air Jordan 13 OGChicago",
+          level: 1
         },
         {
           url: "/static/hotRecomment/shoes/2/2.jpg",
           price: "¥168.00",
-          name: "Air Jordan 13 Playoffs"
+          name: "Air Jordan 13 Playoffs",
+          level: 2
         },
         {
           url: "/static/hotRecomment/shoes/2/3.jpg",
           price: "¥168.00",
-          name: "Air Jordan 13 蒂芙尼"
+          name: "Air Jordan 13 蒂芙尼",
+          level: 3
         },
         {
           url: "/static/hotRecomment/shoes/2/4.jpg",
           price: "¥168.00",
-          name: "Air Jordan 13 黑白熊猫"
+          name: "Air Jordan 13 黑白熊猫",
+          level: 4
         }
       ],
       iphone: [
         {
           url: "/static/hotRecomment/electric/1/11pro.jpg",
           price: "¥168.00",
-          name: "iPhone11pro"
+          name: "iPhone11pro",
+          level: 1
         },
         {
           url: "/static/hotRecomment/electric/1/iPhone8.jpg",
           price: "¥168.00",
-          name: "iPhone8"
+          name: "iPhone8",
+          level: 2
         },
         {
           url: "/static/hotRecomment/electric/1/xr.jpg",
           price: "¥168.00",
-          name: "iPhoneXR"
+          name: "iPhoneXR",
+          level: 3
         },
         {
           url: "/static/hotRecomment/electric/1/xs.jpg",
           price: "¥168.00",
-          name: "iPhoneXS"
+          name: "iPhoneXS",
+          level: 4
         }
       ],
       xm: [
         {
           url: "/static/hotRecomment/electric/2/1.jpg",
           price: "¥168.00",
-          name: "CC9PRO"
+          name: "CC9PRO",
+          level: 1
         },
         {
           url: "/static/hotRecomment/electric/2/2.jpg",
           price: "¥168.00",
-          name: "游戏本2019款"
+          name: "游戏本2019款",
+          level: 3
         },
         {
           url: "/static/hotRecomment/electric/2/3.jpg",
           price: "¥168.00",
-          name: "小爱音箱"
+          name: "小爱音箱",
+          level: 3
         },
         {
           url: "/static/hotRecomment/electric/2/4.jpg",
           price: "¥168.00",
-          name: "mix3"
+          name: "mix3",
+          level: 4
         }
       ]
     };
@@ -404,6 +454,10 @@ export default {
     toUserPage: function() {
       // 跳转到用户信息页
       console.log("跳转用户信息页...");
+      this.$router.push("/person");
+    },
+    toShopCar: function(param) {
+      this.$router.push("/shopCar");
     },
     // 侧边栏点击
     chooseSlide: function(param1, param2) {
@@ -432,15 +486,15 @@ export default {
       localStorage.setItem("good", JSON.stringify(param));
     },
     // 跳转搜索页
-    toSearch:function (param) { 
-      if(this.serachValue) {
+    toSearch: function(param) {
+      if (this.serachValue) {
         localStorage.removeItem("searchValue");
         localStorage.setItem("searchValue", JSON.stringify(this.serachValue));
-        this.$router.push('/search')
+        this.$router.push("/search");
       } else {
-        this.$message('请输入搜索值')
+        this.$message("请输入搜索值");
       }
-     }
+    }
   },
   beforeCreate: function() {
     // 发起请求---获取第一页的数据---赋值给rightList
@@ -455,42 +509,41 @@ export default {
 
 <style lang='less' scoped='' type='text/css'>
 .homecover {
-  width: calc(100% - 400px);
-  padding: 100px 200px 0;
-  background-image: linear-gradient(
-    to bottom,
-    rgb(152, 177, 253),
-    rgb(220, 215, 247)
-  );
+  width: 100%;
+  background-color: #fff;
   position: relative;
   .header {
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
+    width: calc(100% - 400px);
     height: 100px;
-    background-color: #f5f5f5;
-    background-image: url("../assets/image/home_bg.jpg");
+    padding: 0 200px;
+    background-color: #000000;
+    background-image: url("../assets/image/logo4.png");
     background-position: center;
     background-repeat: no-repeat;
     background-size: contain;
   }
   .topBanner {
-    width: 100%;
+    width: calc(100% - 400px);
+    padding: 0 200px;
     height: 80px;
-    background-color: #fff;
+    background-color: rgb(0, 0, 0);
     position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    color: #fff;
     .logo {
       width: 14%;
       height: 80px;
       display: inline-block;
-      background-image: url("../assets/image/logo1.png");
-      background-size: 100%;
+      background-image: url("../assets/image/logo4.png");
+      background-size: contain;
       background-repeat: no-repeat;
-      background-position: center center;
-      position: absolute;
-      left: 0;
-      top: 0;
+      background-position: left;
     }
     .searchArea {
       width: 500px;
@@ -499,9 +552,6 @@ export default {
       justify-content: space-around;
       align-items: center;
       flex-direction: column;
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
       .searchInput {
         width: 100%;
         height: 40%;
@@ -535,92 +585,103 @@ export default {
         }
       }
     }
-    .personInfo {
-      width: 14%;
+    .banner_right {
+      width: 10%;
       height: 100%;
-      position: absolute;
-      right: 0;
-      top: 0;
       display: flex;
-      justify-content: space-around;
+      justify-content: flex-start;
+      flex-direction: row;
       align-items: center;
-      flex-direction: column;
-      .userHead {
-        display: block;
-        width: 30%;
-        height: 60%;
-        background-image: url("../assets/image/userHead.png");
-        background-size: contain;
-        background-position: center;
-        background-repeat: no-repeat;
+      .personInfo {
+        width: 50%;
+        height: 50%;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        flex-direction: column;
+        cursor: pointer;
+        .userHead {
+          display: block;
+          width: 100%;
+          height: 100%;
+          background-image: url("../assets/image/user_white.png");
+          background-size: contain;
+          background-position: center;
+          background-repeat: no-repeat;
+        }
+        .userTips {
+          font-size: 14px;
+          color: #a2a2a2;
+          font-weight: 400;
+        }
       }
-      .userTips {
-        font-size: 14px;
-        color: #a2a2a2;
-        font-weight: 400;
+      .to_shopCar {
+        width: 50%;
+        height: 50%;
+        background-image: url("../assets/image/shop_index.png");
+        background-position: center;
+        background-size: contain;
+        background-repeat: no-repeat;
+        cursor: pointer;
       }
     }
   }
   .slideBar {
-    width: 100%;
-    height: 600px;
-    padding-top: 40px;
+    width: calc(100% - 400px);
+    padding: 0 200px;
     background-color: #fff;
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    flex-direction: row;
-    box-shadow: 0px 3px 10px rgb(31, 75, 207);
+    flex-direction: column;
     overflow: hidden;
     .leftArea {
-      width: 200px;
-      height: 100%;
-      background-color: #fff;
+      width: 100%;
+      height: 50px;
+      padding: 0 0 0;
+      background-color: rgb(255, 255, 255);
       display: flex;
-      justify-content: flex-start;
-      flex-direction: column;
+      justify-content: space-between;
+      flex-direction: row;
       align-items: center;
       .leftItem {
-        width: calc(100% - 2px);
+        width: 100%;
         height: 50px;
         line-height: 50px;
         font-size: 16px;
         text-align: center;
-        border: 1px solid #f1f1f1;
         background-color: #fff;
         color: #000;
-        border-radius: 5px;
         font-weight: 400;
         animation: show 0.5s ease-in-out;
         cursor: pointer;
         &:hover {
-          background-color: #aaaaaa;
+          background-color: #818181;
           color: #fff;
         }
         &.active {
-          background-color: #868585;
+          background-color: #000000;
           color: #fff;
         }
       }
     }
     .rightArea {
-      width: calc(100% - 200px);
-      height: calc(100% - 2px);
-      border: 1px solid #ccc;
+      width: calc(100% - 2px);
+      border: 1px solid #aaa;
       display: flex;
+      flex-flow: row wrap;
       justify-content: space-between;
-      flex-direction: column;
       align-items: center;
       .itemCover {
         width: 100%;
-        height: 90%;
         display: flex;
-        justify-content: space-around;
-        align-items: center;
-        flex-direction: row;
-        flex-wrap: wrap;
+        flex-flow: row wrap;
+        justify-content: flex-start;
+        align-items: flex-start;
+        font-size: 0;
         .itemDetail {
-          width: 22%;
+          width: calc(21% - 2px);
+          margin: 20px 2%;
           height: 150px;
           border: 1px solid #ccc;
           background-color: #fff;
@@ -677,7 +738,7 @@ export default {
       }
       .paging {
         width: 100%;
-        height: 10%;
+        height: 50px;
         position: relative;
         .el-pagination {
           position: absolute;
@@ -689,28 +750,41 @@ export default {
     }
   }
   .recommend {
-    width: calc(100% - 40px);
+    width: calc(100% - 400px);
     background-color: #fff;
-    padding: 10px 20px;
+    padding: 10px 200px 50px;
+    position: relative;
     .recommend_title {
       display: block;
-      width: 100px;
+      width: 100%;
+      text-align: center;
       height: 30px;
+      line-height: 30px;
       font-size: 24px;
       color: rgb(14, 13, 13);
       border-radius: 1px;
       position: relative;
       font-weight: bold;
-      margin: 30px 0;
+      margin: 50px 0;
       &::after {
         content: "";
-        width: 50px;
+        width: 45%;
         height: 2px;
-        background: rgb(243, 60, 60);
+        background: #000;
         position: absolute;
-        bottom: -10px;
-        left: 50%;
-        transform: translateX(-50%);
+        top: 50%;
+        left: 0;
+        transform: translateY(-50%);
+      }
+      &::before {
+        content: "";
+        width: 45%;
+        height: 2px;
+        background: #000;
+        position: absolute;
+        top: 50%;
+        right: 0;
+        transform: translateY(-50%);
       }
     }
     .recomment_content {
@@ -735,8 +809,9 @@ export default {
           text-align: center;
           font-weight: bold;
           font-size: 30px;
-          color: #000;
-          text-shadow: 0 2px 2px rgb(250, 183, 0);
+          color: #fff;
+          background-color: #000;
+          text-shadow: 0 3px 3px rgb(250, 183, 0);
         }
         .item_content {
           width: 20%;
@@ -744,6 +819,7 @@ export default {
           border: 1px solid #ccc;
           box-shadow: 0 4px 4px #ccc;
           border-radius: 20px;
+          cursor: pointer;
           &:hover {
             animation: show 0.3s ease-in-out;
             animation-fill-mode: forwards;
@@ -795,10 +871,10 @@ export default {
     }
   }
   .footer {
-    width: 100%;
-    // height: 300px;
-    padding: 20px 0;
-    background-color: #fff;
+    width: calc(100% - 400px);
+    padding: 10px 200px;
+    background-color: #000;
+    color: #fff;
     overflow: hidden;
     .JD_banner {
       width: 100%;
@@ -845,7 +921,7 @@ export default {
           margin-left: 10px;
           height: 50px;
           font-size: 22px;
-          color: #000;
+          color: #fff;
           font-weight: bold;
         }
       }

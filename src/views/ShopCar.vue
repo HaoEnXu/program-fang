@@ -8,11 +8,14 @@
       </div>
       <div class="topRight">
         <span class="toUser" v-on:click="toPerson"></span>
-        <span class="toShopCar"></span>
+        <div class="toShopCar" >
+          <span class="goodNum" v-if="dataList.length != 0">{{dataList.length}}</span>
+        </div>
       </div>
     </div>
     <!-- 内容列表 -->
     <div class="goodList">
+      <div class="empty" v-if="dataList.length == 0"></div>
       <div class="goodItem" v-for="(item,index) in dataList" v-bind:key="index">
         <div
           class="chooseBtn"
@@ -20,9 +23,9 @@
           v-on:click="chooseItem(item)"
         ></div>
         <div class="goodInfo">
-          <span class="good_img" :style="{backgroundImage:'url('+item.imgUrl+')'}"></span>
+          <span class="good_img" :style="{backgroundImage:'url('+item.url+')'}"></span>
           <span class="good_name">{{item.name}}</span>
-          <span class="good_price">￥{{item.price}}</span>
+          <span class="good_price">{{item.price}}</span>
           <span class="good_type" v-if="item.type == 1">全新闲置</span>
           <span class="good_type" v-else-if="item.type == 2">全新瑕疵</span>
           <span class="good_type" v-else-if="item.type == 3">九成新</span>
@@ -124,40 +127,7 @@
 export default {
   data() {
     return {
-      dataList: [
-        {
-          id: 1,
-          imgUrl: "/static/hotRecomment/shoes/1/2.jpg",
-          name: "AirJordan1 伦纳德",
-          price: "120",
-          type: 2,
-          choose: false
-        },
-        {
-          id: 2,
-          imgUrl: "/static/hotRecomment/shoes/1/3.jpg",
-          name: "AirJordan1 黑粉脚趾",
-          price: "160",
-          type: 1,
-          choose: false
-        },
-        {
-          id: 3,
-          imgUrl: "/static/hotRecomment/shoes/1/4.jpg",
-          name: "AirJordan1 骚粉",
-          price: "184",
-          type: 4,
-          choose: false
-        },
-        {
-          id: 4,
-          imgUrl: "/static/hotRecomment/shoes/1/5.jpg",
-          name: "AirJordan1 黑红拼接",
-          price: "150",
-          type: 3,
-          choose: false
-        }
-      ],
+      dataList: [],
       chooseList: [],
       totalPrice: 0,
       totalNum: "",
@@ -179,14 +149,18 @@ export default {
       const item = params;
       if (item.choose == true) {
         item.choose = !item.choose;
-        this.totalPrice -= parseInt(item.price);
+        this.totalPrice -= parseFloat(
+          item.price.indexOf("￥") == -1 ? item.price.substr(1) : item.price
+        );
         this.chooseList.forEach((val, index) => {
           if (val.id == item.id) {
             this.chooseList.splice(index, 1);
           }
         });
       } else {
-        this.totalPrice += parseInt(item.price);
+        this.totalPrice += parseFloat(
+          item.price.indexOf("￥") == -1 ? item.price.substr(1) : item.price
+        );
         item.choose = !item.choose;
         this.chooseList.push(item);
       }
@@ -211,7 +185,9 @@ export default {
           this.dataList.forEach(val => {
             val.choose = true;
             this.chooseList.push(val);
-            this.totalPrice += parseInt(val.price);
+            this.totalPrice += parseFloat(
+              val.price.indexOf("￥") == -1 ? val.price.substr(1) : val.price
+            );
           });
           this.hasAll = true;
           this.canBuy = true;
@@ -227,8 +203,17 @@ export default {
     deleteItem: function(param1, param2) {
       const item = param1;
       const index = param2;
-      this.dataList.splice(index, 1);
-      item.choose ? (this.totalPrice -= item.price) : "";
+      const newList = JSON.parse(localStorage.getItem("goodList"));
+      newList.forEach((val, index) => {
+        if (item.name == val.name) {
+          this.dataList.splice(index, 1);
+          localStorage.setItem("goodList", JSON.stringify(this.dataList));
+        }
+      });
+      item.choose
+        ? (this.totalPrice -=
+            item.price.indexOf("￥") == -1 ? item.price.substr(1) : item.price)
+        : "";
       this.chooseList.forEach((val, index) => {
         if (val.id == item.id) {
           this.chooseList.splice(index, 1);
@@ -242,6 +227,12 @@ export default {
         this.canBuy = false;
       }
     }
+  },
+  beforeMount: function() {
+    this.dataList = JSON.parse(localStorage.getItem("goodList"));
+    this.dataList.forEach(val => {
+      val.choose = false;
+    });
   }
 };
 </script>
@@ -358,13 +349,36 @@ export default {
             height: 2px;
           }
         }
+        .goodNum {
+          display: block;
+          padding: 0 5px;
+          background-color: #f56c6c;
+          height: 20px;
+          line-height: 20px;
+          text-align: center;
+          border-radius: 10px;
+          color: #fff;
+          font-size: 14px;
+          position: absolute;
+          right: -10px;
+          top: -10px;
+        }
       }
     }
   }
   .goodList {
     width: calc(100% - 400px);
-    margin: 20px 200px;
-    background-color: #f5f5f5;
+    min-height: calc(100% - 410px);
+    margin: 0 200px;
+    background-color: #fff;
+    .empty {
+      width: 100%;
+      height: 100%;
+      background-image: url("../assets/image/data_empty.png");
+      background-size: 300px 200px;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
     .goodItem {
       width: calc(100% - 40px);
       padding: 20px 0 20px 40px;
@@ -395,7 +409,6 @@ export default {
         }
       }
       .goodInfo {
-        width: 60%;
         height: 150px;
         display: flex;
         justify-content: space-around;
@@ -416,7 +429,14 @@ export default {
         .good_price {
           font-size: 20px;
           font-weight: bold;
+          color: #f56c6c;
+          margin-left: 30px;
+        }
+        .good_type {
+          font-size: 20px;
           color: #000;
+          font-weight: bold;
+          margin-left: 30px;
         }
       }
       .handleArea {
@@ -458,7 +478,7 @@ export default {
     margin: 20px 200px;
     padding-left: 40px;
     height: 100px;
-    background-color: #f2f2f2;
+    background-color: #ffffff;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -530,6 +550,7 @@ export default {
   .footer {
     width: calc(100% - 400px);
     padding: 10px 200px;
+    height: 200px;
     background-color: #000;
     color: #fff;
     overflow: hidden;
