@@ -12,8 +12,8 @@
       </div>
     </div>
     <div class="content_search">
-      <el-input placeholder="页内搜索..." v-model="newSearch" class="input-with-select">
-        <el-button slot="append" icon="el-icon-search"></el-button>
+      <el-input placeholder="页内搜索..." v-model="newSearch" class="input-with-select" @input="change">
+        <el-button slot="append" icon="el-icon-search" :disabled="hasValue" v-on:click="toSearch"></el-button>
       </el-input>
       <div class="sortArea">
         <span
@@ -162,8 +162,13 @@ export default {
       newSearch: "",
       sortIndex: 0,
       // 分页
-      total:20,
-      size:12
+      total: 20,
+      size: 6,
+      currentPage: 1, //初始页
+      pagesize: 6,
+
+      // 搜索
+      hasValue: true
     };
   },
   methods: {
@@ -208,6 +213,20 @@ export default {
     handleCurrentChange: function(currentPage) {
       console.log(currentPage);
     },
+    // 搜索
+    toSearch: function() {
+      this.sortIndex = 0;
+      const keyWord = this.newSearch;
+      // 发起请求-重新赋值
+    },
+    // 控制搜索按钮的开启和禁用
+    change: function(param) {
+      if (param) {
+        this.hasValue = false;
+      } else {
+        this.hasValue = true;
+      }
+    }
   },
   beforeCreate: function() {},
   beforeMount: function() {
