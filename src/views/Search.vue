@@ -11,21 +11,52 @@
         <span class="toShopCar"></span>
       </div>
     </div>
+    <div class="content_search">
+      <el-input placeholder="页内搜索..." v-model="newSearch" class="input-with-select">
+        <el-button slot="append" icon="el-icon-search"></el-button>
+      </el-input>
+      <div class="sortArea">
+        <span
+          class="sortBtn"
+          v-bind:class="{active:sortIndex == 0}"
+          id="base"
+          v-on:click="sortChoose"
+        >默认排序</span>
+        <span
+          class="sortBtn"
+          v-bind:class="{active:sortIndex == 1}"
+          id="price"
+          v-on:click="sortChoose"
+        >
+          价格
+          <i class="el-icon-d-caret"></i>
+        </span>
+        <span
+          class="sortBtn"
+          v-bind:class="{active:sortIndex == 2}"
+          id="upTime"
+          v-on:click="sortChoose"
+        >
+          上架时间
+          <i class="el-icon-d-caret"></i>
+        </span>
+      </div>
+    </div>
     <!-- 内容展示区 -->
     <div class="contentArea">
       <!-- 有数据 -->
       <div class="data_has" v-if="hasData">
         <div class="data_item" v-for="(item,index) in dataList" v-bind:key="index">
-          <div class="item_img" :style="{backgroundImage:'url('+item.photo+')'}"></div>
+          <div class="item_img" :style="{backgroundImage:'url('+item.url+')'}"></div>
           <div class="item_msg">
             <span class="item_name">{{item.goodName}}</span>
-            <span class="item_price">{{item.price}}</span>
+            <span class="item_price">￥{{item.price}}</span>
             <span class="item_status" v-if="item.status == 1">全新闲置</span>
             <span class="item_status" v-else-if="item.status == 2">全新瑕疵</span>
             <span class="item_status" v-else-if="item.status == 3">九成新</span>
             <span class="item_status" v-else>正常新</span>
             <div class="handleArea">
-              <span class="btn_detail">查看详情</span>
+              <span class="btn_detail" v-on:click="lookDetail(item)">查看详情</span>
               <span class="btn_shop">加入购物车</span>
             </div>
           </div>
@@ -33,9 +64,20 @@
       </div>
       <!-- 数据为空 -->
       <div class="data_empty" v-else>
-        <span class="empty_img"></span>
-        <span class="empty_tips">很抱歉，暂未数据...</span>
+        <span class="empty_tips">很抱歉，未检索到相关数据...</span>
       </div>
+    </div>
+    <!-- 分页 -->
+    <div class="paging">
+      <el-pagination
+        @size-change="handleSizeChange"
+        @current-change="handleCurrentChange"
+        :current-page="currentPage"
+        :page-size="pagesize"
+        layout="prev, pager, next"
+        :total="total"
+        :size="size"
+      ></el-pagination>
     </div>
     <!-- 底栏 -->
     <div class="footer">
@@ -116,7 +158,12 @@ export default {
     return {
       searchValue: "",
       hasData: false,
-      dataList: []
+      dataList: [],
+      newSearch: "",
+      sortIndex: 0,
+      // 分页
+      total:20,
+      size:12
     };
   },
   methods: {
@@ -127,7 +174,40 @@ export default {
     // 跳转到用户信息页
     toPerson: function(params) {
       this.$router.push("/person");
-    }
+    },
+    // 跳转详情
+    lookDetail: function(param) {
+      console.log(param);
+    },
+    sortChoose: function(e) {
+      const keyWord = e.target.id;
+      if (keyWord == "base") {
+        this.sortIndex = 0;
+      } else if (keyWord == "price") {
+        this.sortIndex = 1;
+      } else {
+        this.sortIndex = 2;
+      }
+      /* 
+        发请求的时候用keyWord字段：
+                base 默认排序
+                price  按照价格排序
+                upTime 上架时间
+        请求完成之后，赋值给dataList
+        对应字段：
+                url:图片地址
+                goodName：货物名称
+                price：货物价格
+                status：新旧程度
+      */
+    },
+    // 分页
+    handleSizeChange: function(pagesize) {
+      console.log(pagesize);
+    },
+    handleCurrentChange: function(currentPage) {
+      console.log(currentPage);
+    },
   },
   beforeCreate: function() {},
   beforeMount: function() {
@@ -150,127 +230,53 @@ export default {
 </script>
 
 <style lang='less' scoped='' type='text/css'>
+@import "../css/footer.less";
+@import "../css/topBanner.less";
 .cover {
   width: 100%;
   height: 100%;
   background-color: #fff;
-  .topBanner {
-    width: calc(100% - 400px);
-    height: 50px;
-    background-color: rgb(37, 37, 37);
-    padding: 0 200px;
+  .content_search {
+    width: calc(100% -400px);
+    padding: 10px 200px;
+    height: 100px;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-direction: row;
-    font-size: 16px;
-    color: rgb(255, 253, 253);
-    font-weight: 400;
-    cursor: pointer;
-    .topLeft {
-      height: 100%;
-      display: flex;
-      justify-content: flex-start;
-      align-items: center;
-      flex-direction: row;
-      .logo {
-        width: 100px;
-        height: 100%;
-        background-image: url("../assets/image/logo4.png");
-        background-size: contain;
-        background-repeat: no-repeat;
-        background-position: center;
-      }
-      .toIndex {
-        margin-left: 40px;
-        position: relative;
-        &::after {
-          content: "";
-          width: 0%;
-          height: 0px;
-          background-color: rgb(255, 255, 255);
-          position: absolute;
-          left: 50%;
-          bottom: -10px;
-          transition: all 0.2s;
-        }
-        &:hover {
-          color: rgb(255, 255, 255);
-          font-weight: 400;
-          &::after {
-            left: 0%;
-            width: 100%;
-            height: 2px;
-          }
-        }
-      }
+    justify-content: flex-end;
+    align-items: flex-end;
+    flex-direction: column;
+    .el-input {
+      width: 400px;
     }
-    .topRight {
-      height: 100%;
+    .sortArea {
+      width: 400px;
+      padding: 10px 0;
       display: flex;
-      justify-content: flex-start;
+      justify-content: flex-end;
       align-items: center;
       flex-direction: row;
-      .toUser {
-        width: 24px;
-        height: 24px;
-        background-image: url("../assets/image/user.png");
-        background-size: contain;
-        background-repeat: no-repeat;
-        margin: 0 40px;
-        position: relative;
-        &::after {
-          content: "";
-          width: 0%;
-          height: 0px;
-          background-color: rgb(255, 255, 255);
-          position: absolute;
-          left: 50%;
-          bottom: -10px;
-          transition: all 0.2s;
-        }
+      color: #a5a5a5;
+      .sortBtn {
+        display: block;
+        width: 100px;
+        cursor: pointer;
         &:hover {
-          &::after {
-            left: 0%;
-            width: 100%;
-            height: 2px;
-          }
+          color: #000;
+          font-weight: bold;
         }
-      }
-      .toShopCar {
-        width: 24px;
-        height: 24px;
-        background-image: url("../assets/image/shopCar.png");
-        background-size: contain;
-        background-repeat: no-repeat;
-        position: relative;
-        &::after {
-          content: "";
-          width: 0%;
-          height: 0px;
-          background-color: rgb(255, 255, 255);
-          position: absolute;
-          left: 50%;
-          bottom: -10px;
-          transition: all 0.2s;
-        }
-        &:hover {
-          &::after {
-            left: 0%;
-            width: 100%;
-            height: 2px;
-          }
+        &.active {
+          color: #000;
+          font-weight: bold;
         }
       }
     }
   }
   .contentArea {
     width: calc(100% - 400px);
+    min-height: calc(100% - 390px);
     margin: 0 200px;
+    position: relative;
     .data_has {
-      width: calc(100% - 40px);
-      padding: 20px;
-      padding-top: 50px;
+      width: 100%;
       display: flex;
       flex-flow: row wrap;
       justify-content: space-between;
@@ -285,6 +291,8 @@ export default {
         justify-content: space-between;
         align-items: center;
         flex-direction: row;
+        transition: all 0.3s;
+        cursor: pointer;
         .item_img {
           width: 50%;
           height: 100%;
@@ -342,124 +350,32 @@ export default {
             }
           }
         }
-      }
-    }
-  }
-  .footer {
-    width: calc(100% - 400px);
-    padding: 10px 200px;
-    background-color: #000;
-    color: #fff;
-    overflow: hidden;
-    .JD_banner {
-      width: 100%;
-      padding: 0;
-      margin: 0;
-      list-style: none;
-      display: flex;
-      justify-content: space-around;
-      align-content: center;
-      flex-direction: row;
-      margin: 10px 0;
-      li {
-        display: flex;
-        justify-content: flex-start;
-        align-items: center;
-        flex-direction: row;
-        height: 50px;
-        line-height: 50px;
-        .icon_JD {
-          width: 36px;
-          height: 42px;
-          &.one {
-            background-image: url("../assets/image/jd1.png");
-            background-size: 100%;
-            background-repeat: no-repeat;
-          }
-          &.two {
-            background-image: url("../assets/image/jd2.png");
-            background-size: 100%;
-            background-repeat: no-repeat;
-          }
-          &.three {
-            background-image: url("../assets/image/jd3.png");
-            background-size: 100%;
-            background-repeat: no-repeat;
-          }
-          &.four {
-            background-image: url("../assets/image/jd4.png");
-            background-size: 100%;
-            background-repeat: no-repeat;
-          }
-        }
-        .text_JD {
-          margin-left: 10px;
-          height: 50px;
-          font-size: 22px;
-          color: #fff;
-          font-weight: bold;
+        &:hover {
+          box-shadow: 0px 7px 7px rgb(126, 126, 126);
+          transform: translateY(-2px);
         }
       }
     }
-    .bottomPart {
+    .data_empty {
+      position: absolute;
+      left: 0;
+      top: 0;
       width: 100%;
-      border-top: 1px solid #ccc;
-      .bottom_list {
-        width: calc(100% - 60px);
-        list-style: none;
-        margin: 0;
-        padding: 0;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-around;
-        align-items: center;
+      height: 100%;
+      background-image: url("../assets/image/data_empty.png");
+      background-size: 300px 200px;
+      background-position: center;
+      background-repeat: no-repeat;
+      .empty_tips {
+        display: block;
+        width: 100%;
         height: 30px;
-        padding: 10px 30px;
-        li {
-          font-size: 12px;
-          color: #ccc;
-          &:hover {
-            color: #ff0000;
-            cursor: pointer;
-          }
-        }
-        i {
-          width: 1px;
-          height: 16px;
-          background-color: #ccc;
-        }
-      }
-      .bottom_list2 {
-        width: calc(100% - 60px);
-        list-style: none;
-        margin: 10px 0 0 0;
-        padding: 0;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        height: 30px;
-        padding: 10px 30px;
-        li {
-          width: 100%;
-          height: 20px;
-          margin-bottom: 5px;
-
-          span {
-            display: inline-block;
-            font-size: 12px;
-            color: #ccc;
-            padding: 0 10px;
-            border-right: 1px solid #ccc;
-            cursor: pointer;
-            &:hover {
-              color: #ff0000;
-            }
-            &:last-child {
-              border: 0;
-            }
-          }
-        }
+        font-size: 20px;
+        line-height: 30px;
+        text-align: center;
+        color: #a5a5a5;
+        position: absolute;
+        bottom: 20%;
       }
     }
   }

@@ -54,7 +54,7 @@
           >
             <div class="itemImage" :style="{backgroundImage:'url('+item.url+')'}"></div>
             <div class="itemIntro">
-              <span class="itemPrice">{{item.price}}</span>
+              <span class="itemPrice">￥{{item.price}}</span>
               <span class="itemText">{{item.tips}}</span>
             </div>
           </div>
@@ -89,7 +89,7 @@
             <!-- 名字 -->
             <span class="recomment_name">{{item.name}}</span>
             <!-- 价格 -->
-            <span class="recomment_price">{{item.price}}</span>
+            <span class="recomment_price">￥{{item.price}}</span>
           </div>
         </div>
         <div class="item_cover">
@@ -104,7 +104,7 @@
             <!-- 名字 -->
             <span class="recomment_name">{{item.name}}</span>
             <!-- 价格 -->
-            <span class="recomment_price">{{item.price}}</span>
+            <span class="recomment_price">￥{{item.price}}</span>
           </div>
         </div>
       </div>
@@ -122,7 +122,7 @@
             <!-- 名字 -->
             <span class="recomment_name">{{item.name}}</span>
             <!-- 价格 -->
-            <span class="recomment_price">{{item.price}}</span>
+            <span class="recomment_price">￥{{item.price}}</span>
           </div>
         </div>
         <div class="item_cover">
@@ -137,7 +137,7 @@
             <!-- 名字 -->
             <span class="recomment_name">{{item.name}}</span>
             <!-- 价格 -->
-            <span class="recomment_price">{{item.price}}</span>
+            <span class="recomment_price">￥{{item.price}}</span>
           </div>
         </div>
       </div>
@@ -243,7 +243,7 @@ export default {
           name: "智能机器狗遥控动物对话走路机器人男女孩电动玩具1-6岁",
           url: "/static/slideBar/儿童玩具/pic1.jpg",
           tips: "智能机器狗遥控动物对话走路机器人男女孩电动玩具1-6岁",
-          price: "¥168.00",
+          price: "168",
           isNew: false,
           id: 1
         },
@@ -251,7 +251,7 @@ export default {
           name: "正版植物大战僵尸玩具全套3男孩大反击僵尸套装豌豆射手儿童公仔",
           url: "/static/slideBar/儿童玩具/pic2.jpg",
           tips: "正版植物大战僵尸玩具全套3男孩大反击僵尸套装豌豆射手儿童公仔",
-          price: "¥139.00",
+          price: "139",
           isNew: false,
           id: 2
         },
@@ -259,7 +259,7 @@ export default {
           name: "迪士尼儿童过家家玩具女孩化妆品套装无毒梳妆台盒冰雪奇缘",
           url: "/static/slideBar/儿童玩具/pic3.jpg",
           tips: "迪士尼儿童过家家玩具女孩化妆品套装无毒梳妆台盒冰雪奇缘",
-          price: "¥49.00",
+          price: "49",
           isNew: false,
           id: 3
         },
@@ -267,7 +267,7 @@ export default {
           name: "迪士尼儿童化妆品公主彩妆盒套装无毒小女孩儿玩具指甲油可水洗",
           url: "/static/slideBar/儿童玩具/pic4.jpg",
           tips: "迪士尼儿童化妆品公主彩妆盒套装无毒小女孩儿玩具指甲油可水洗",
-          price: "¥68.00",
+          price: "68",
           isNew: false,
           id: 4
         },
@@ -275,7 +275,7 @@ export default {
           name: "儿童益智玩具早教音乐一两三周宝宝1-3岁开发智力生日礼物",
           url: "/static/slideBar/儿童玩具/pic5.jpg",
           tips: "儿童益智玩具早教音乐一两三周宝宝1-3岁开发智力生日礼物",
-          price: "¥28.00",
+          price: "28",
           isNew: false,
           id: 5
         },
@@ -283,7 +283,7 @@ export default {
           name: "儿童钓鱼玩具套装开发智力一两三周宝宝益智礼物女孩儿",
           url: "/static/slideBar/儿童玩具/pic6.jpg",
           tips: "儿童钓鱼玩具套装开发智力一两三周宝宝益智礼物女孩儿",
-          price: "¥69.00",
+          price: "69",
           isNew: false,
           id: 6
         },
@@ -291,7 +291,7 @@ export default {
           name: "儿童益智玩具2-3小孩7一岁十两三周岁宝宝多功能智力开发",
           url: "/static/slideBar/儿童玩具/pic7.jpg",
           tips: "儿童益智玩具2-3小孩7一岁十两三周岁宝宝多功能智力开发",
-          price: "¥79.00",
+          price: "79",
           isNew: false,
           id: 7
         },
@@ -299,7 +299,7 @@ export default {
           name: "沃尔沃挖掘机双鹰电动遥控钩机挖土机儿童玩具合金版",
           url: "/static/slideBar/儿童玩具/pic8.jpg",
           tips: "沃尔沃挖掘机双鹰电动遥控钩机挖土机儿童玩具合金版",
-          price: "¥269.00",
+          price: "269",
           isNew: false,
           id: 8
         },
@@ -307,7 +307,7 @@ export default {
           name: "贝恩施儿童厨房玩具过家家套装仿真厨具做饭煮饭男女孩宝宝3-6岁7",
           url: "/static/slideBar/儿童玩具/pic9.jpg",
           tips: "贝恩施儿童厨房玩具过家家套装仿真厨具做饭煮饭男女孩宝宝3-6岁7",
-          price: "¥158.00",
+          price: "158",
           isNew: false,
           id: 9
         },
@@ -315,7 +315,7 @@ export default {
           name: "汇乐摇摆鹅儿童电动玩具会唱歌跳舞益智小鸭子宝宝1-3岁男孩抖音",
           url: "/static/slideBar/儿童玩具/pic10.jpg",
           tips: "汇乐摇摆鹅儿童电动玩具会唱歌跳舞益智小鸭子宝宝1-3岁男孩抖音",
-          price: "¥119.00",
+          price: "119",
           isNew: false,
           id: 10
         },
@@ -323,7 +323,7 @@ export default {
           name: "贝恩施儿童购物车玩具女孩 超市小手推车过家家宝宝",
           url: "/static/slideBar/儿童玩具/pic11.jpg",
           tips: "贝恩施儿童购物车玩具女孩 超市小手推车过家家宝宝",
-          price: "¥37.90",
+          price: "37",
           isNew: false,
           id: 11
         },
@@ -331,7 +331,7 @@ export default {
           name: "特宝儿啄木鸟捉虫玩具喂小鸟鸡抓吃虫子俩岁女孩儿宝宝益智",
           url: "/static/slideBar/儿童玩具/pic12.jpg",
           tips: "特宝儿啄木鸟捉虫玩具喂小鸟鸡抓吃虫子俩岁女孩儿宝宝益智",
-          price: "¥69.90",
+          price: "69",
           isNew: false,
           id: 12
         }
@@ -343,25 +343,25 @@ export default {
       aj1: [
         {
           url: "/static/hotRecomment/shoes/1/2.jpg",
-          price: "¥168.00",
+          price: "168",
           name: "AirJoran1 伦纳德",
           level: 1
         },
         {
           url: "/static/hotRecomment/shoes/1/3.jpg",
-          price: "¥168.00",
+          price: "168",
           name: "AirJoran1 黑粉脚趾",
           level: 2
         },
         {
           url: "/static/hotRecomment/shoes/1/4.jpg",
-          price: "¥168.00",
+          price: "168",
           name: "AirJoran1 骚粉",
           level: 3
         },
         {
           url: "/static/hotRecomment/shoes/1/5.jpg",
-          price: "¥168.00",
+          price: "168",
           name: "AirJoran1 鸳鸯拼接",
           level: 4
         }
@@ -369,25 +369,25 @@ export default {
       aj13: [
         {
           url: "/static/hotRecomment/shoes/2/1.jpg",
-          price: "¥168.00",
+          price: "168",
           name: "Air Jordan 13 OGChicago",
           level: 1
         },
         {
           url: "/static/hotRecomment/shoes/2/2.jpg",
-          price: "¥168.00",
+          price: "168",
           name: "Air Jordan 13 Playoffs",
           level: 2
         },
         {
           url: "/static/hotRecomment/shoes/2/3.jpg",
-          price: "¥168.00",
+          price: "168",
           name: "Air Jordan 13 蒂芙尼",
           level: 3
         },
         {
           url: "/static/hotRecomment/shoes/2/4.jpg",
-          price: "¥168.00",
+          price: "168",
           name: "Air Jordan 13 黑白熊猫",
           level: 4
         }
@@ -395,25 +395,25 @@ export default {
       iphone: [
         {
           url: "/static/hotRecomment/electric/1/11pro.jpg",
-          price: "¥168.00",
+          price: "168",
           name: "iPhone11pro",
           level: 1
         },
         {
           url: "/static/hotRecomment/electric/1/iPhone8.jpg",
-          price: "¥168.00",
+          price: "168",
           name: "iPhone8",
           level: 2
         },
         {
           url: "/static/hotRecomment/electric/1/xr.jpg",
-          price: "¥168.00",
+          price: "168",
           name: "iPhoneXR",
           level: 3
         },
         {
           url: "/static/hotRecomment/electric/1/xs.jpg",
-          price: "¥168.00",
+          price: "168",
           name: "iPhoneXS",
           level: 4
         }
@@ -421,25 +421,25 @@ export default {
       xm: [
         {
           url: "/static/hotRecomment/electric/2/1.jpg",
-          price: "¥168.00",
+          price: "168",
           name: "CC9PRO",
           level: 1
         },
         {
           url: "/static/hotRecomment/electric/2/2.jpg",
-          price: "¥168.00",
+          price: "168",
           name: "游戏本2019款",
           level: 3
         },
         {
           url: "/static/hotRecomment/electric/2/3.jpg",
-          price: "¥168.00",
+          price: "168",
           name: "小爱音箱",
           level: 3
         },
         {
           url: "/static/hotRecomment/electric/2/4.jpg",
-          price: "¥168.00",
+          price: "168",
           name: "mix3",
           level: 4
         }
@@ -508,6 +508,7 @@ export default {
 </script>
 
 <style lang='less' scoped='' type='text/css'>
+@import "../css/footer.less";
 .homecover {
   width: 100%;
   background-color: #fff;
@@ -866,124 +867,6 @@ export default {
           width: 18%;
           height: 100%;
           border: 1px solid #ccc;
-        }
-      }
-    }
-  }
-  .footer {
-    width: calc(100% - 400px);
-    padding: 10px 200px;
-    background-color: #000;
-    color: #fff;
-    overflow: hidden;
-    .JD_banner {
-      width: 100%;
-      padding: 0;
-      margin: 0;
-      list-style: none;
-      display: flex;
-      justify-content: space-around;
-      align-content: center;
-      flex-direction: row;
-      margin: 10px 0;
-      li {
-        display: flex;
-        justify-content: flex-start;
-        align-items: center;
-        flex-direction: row;
-        height: 50px;
-        line-height: 50px;
-        .icon_JD {
-          width: 36px;
-          height: 42px;
-          &.one {
-            background-image: url("../assets/image/jd1.png");
-            background-size: 100%;
-            background-repeat: no-repeat;
-          }
-          &.two {
-            background-image: url("../assets/image/jd2.png");
-            background-size: 100%;
-            background-repeat: no-repeat;
-          }
-          &.three {
-            background-image: url("../assets/image/jd3.png");
-            background-size: 100%;
-            background-repeat: no-repeat;
-          }
-          &.four {
-            background-image: url("../assets/image/jd4.png");
-            background-size: 100%;
-            background-repeat: no-repeat;
-          }
-        }
-        .text_JD {
-          margin-left: 10px;
-          height: 50px;
-          font-size: 22px;
-          color: #fff;
-          font-weight: bold;
-        }
-      }
-    }
-    .bottomPart {
-      width: 100%;
-      border-top: 1px solid #ccc;
-      .bottom_list {
-        width: calc(100% - 60px);
-        list-style: none;
-        margin: 0;
-        padding: 0;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-around;
-        align-items: center;
-        height: 30px;
-        padding: 10px 30px;
-        li {
-          font-size: 12px;
-          color: #ccc;
-          &:hover {
-            color: #ff0000;
-            cursor: pointer;
-          }
-        }
-        i {
-          width: 1px;
-          height: 16px;
-          background-color: #ccc;
-        }
-      }
-      .bottom_list2 {
-        width: calc(100% - 60px);
-        list-style: none;
-        margin: 10px 0 0 0;
-        padding: 0;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        height: 30px;
-        padding: 10px 30px;
-        li {
-          width: 100%;
-          height: 20px;
-          margin-bottom: 5px;
-
-          span {
-            display: inline-block;
-            font-size: 12px;
-            color: #ccc;
-            padding: 0 10px;
-            border-right: 1px solid #ccc;
-            cursor: pointer;
-            &:hover {
-              color: #ff0000;
-            }
-            &:last-child {
-              border: 0;
-            }
-          }
         }
       }
     }

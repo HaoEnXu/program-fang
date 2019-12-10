@@ -1,13 +1,88 @@
 <template>
   <div class="topCover">
+    <!-- 顶部导航栏 -->
     <div class="topBanner">
       <div class="topLeft">
         <span class="logo"></span>
         <span class="toIndex" v-on:click="toHome">首页</span>
       </div>
       <div class="topRight">
-        <span class="toUser"></span>
-        <span class="toShopCar" v-on:click="toShopCar"></span>
+        <span class="toUser" v-on:click="toPerson"></span>
+        <div class="toShopCar" v-on:click="toShopCar">
+          <span class="goodNum" v-if="goodList.length != 0">{{goodList.length}}</span>
+        </div>
+      </div>
+    </div>
+    <!-- 主要内容区 -->
+    <div class="mainInfo"></div>
+    <!-- 底栏 -->
+    <div class="footer">
+      <ul class="JD_banner">
+        <li>
+          <span class="icon_JD one"></span>
+          <span class="text_JD">品类齐全，轻松购物</span>
+        </li>
+        <li>
+          <span class="icon_JD two"></span>
+          <span class="text_JD">多仓直发，极速配送</span>
+        </li>
+        <li>
+          <span class="icon_JD three"></span>
+          <span class="text_JD">正品行货，精致服务</span>
+        </li>
+        <li>
+          <span class="icon_JD four"></span>
+          <span class="text_JD">天天低价，畅选无忧</span>
+        </li>
+      </ul>
+      <div class="bottomPart">
+        <ul class="bottom_list">
+          <li>关于我们</li>
+          <i></i>
+          <li>联系我们</li>
+          <i></i>
+          <li>联系客服</li>
+          <i></i>
+          <li>合作招商</li>
+          <i></i>
+          <li>商家帮助</li>
+          <i></i>
+          <li>营销中心</li>
+          <i></i>
+          <li>手机京东</li>
+          <i></i>
+          <li>友情链接</li>
+          <i></i>
+          <li>销售联盟</li>
+          <i></i>
+          <li>京东社区</li>
+          <i></i>
+          <li>风险监测</li>
+          <i></i>
+          <li>隐私政策</li>
+          <i></i>
+          <li>京东公益</li>
+          <i></i>
+          <li>English Site</li>
+        </ul>
+        <ul class="bottom_list2">
+          <li>
+            <span>京公网安备11000002000088号</span>
+            <span>京CP证070359号</span>
+            <span>互联网药品信息服务资格证编号(京)-经营性-2014-0008</span>
+            <span>新出发京季字第大120007号</span>
+          </li>
+          <li>
+            <span>互联网出版许可证编号新出网证(京)字150号</span>
+            <span>出版物经营许可证</span>
+            <span>网络文化经营许可证京网文(2014)2148-348号</span>
+            <span>违法和不良信息举报电话:4006561155</span>
+          </li>
+          <li>
+            <span>CopyrightC2004-2019京东JD.com版权所有</span>
+            <span>消费者维权热线:40060</span>
+          </li>
+        </ul>
       </div>
     </div>
   </div>
@@ -16,9 +91,15 @@
 <script type='text/ecmascript-6'>
 export default {
   data() {
-    return {};
+    return {
+      goodList: []
+    };
   },
   methods: {
+    // 跳转用户详情页
+    toPerson: function() {
+      this.$router.push("/person");
+    },
     // 回到首页
     toHome: function(params) {
       this.$router.push("/home");
@@ -27,123 +108,31 @@ export default {
     toShopCar: function(params) {
       this.$router.push("/shopCar");
     }
+  },
+  beforeMount: function(param) {
+    if (localStorage.getItem("goodList")) {
+      this.goodList = JSON.parse(localStorage.getItem("goodList"));
+    } else {
+      this.goodList = [];
+    }
   }
 };
 </script>
 
 <style lang='less' scoped='' type='text/css'>
+@import "../css/topBanner.less";
+@import "../css/footer.less";
 .topCover {
   width: 100%;
   height: 100%;
-  .topBanner {
-    width: calc(100% - 400px);
-    height: 50px;
-    background-color: rgb(37, 37, 37);
-    padding: 0 200px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-direction: row;
-    font-size: 16px;
-    color: rgb(255, 253, 253);
-    font-weight: 400;
-    cursor: pointer;
-    .topLeft {
-      height: 100%;
-      display: flex;
-      justify-content: flex-start;
-      align-items: center;
-      flex-direction: row;
-      .logo {
-        width: 100px;
-        height: 100%;
-        background-image: url("../assets/image/logo4.png");
-        background-size: contain;
-        background-repeat: no-repeat;
-        background-position: center;
-      }
-      .toIndex {
-        margin-left: 40px;
-        position: relative;
-        &::after {
-          content: "";
-          width: 0%;
-          height: 0px;
-          background-color: rgb(255, 255, 255);
-          position: absolute;
-          left: 50%;
-          bottom: -10px;
-          transition: all 0.2s;
-        }
-        &:hover {
-          color: rgb(255, 255, 255);
-          font-weight: 400;
-          &::after {
-            left: 0%;
-            width: 100%;
-            height: 2px;
-          }
-        }
-      }
-    }
-    .topRight {
-      height: 100%;
-      display: flex;
-      justify-content: flex-start;
-      align-items: center;
-      flex-direction: row;
-      .toUser {
-        width: 24px;
-        height: 24px;
-        background-image: url("../assets/image/user.png");
-        background-size: contain;
-        background-repeat: no-repeat;
-        margin: 0 40px;
-        position: relative;
-        &::after {
-          content: "";
-          width: 0%;
-          height: 0px;
-          background-color: rgb(255, 255, 255);
-          position: absolute;
-          left: 50%;
-          bottom: -10px;
-          transition: all 0.2s;
-        }
-        &:hover {
-          &::after {
-            left: 0%;
-            width: 100%;
-            height: 2px;
-          }
-        }
-      }
-      .toShopCar {
-        width: 24px;
-        height: 24px;
-        background-image: url("../assets/image/shopCar.png");
-        background-size: contain;
-        background-repeat: no-repeat;
-        position: relative;
-        &::after {
-          content: "";
-          width: 0%;
-          height: 0px;
-          background-color: rgb(255, 255, 255);
-          position: absolute;
-          left: 50%;
-          bottom: -10px;
-          transition: all 0.2s;
-        }
-        &:hover {
-          &::after {
-            left: 0%;
-            width: 100%;
-            height: 2px;
-          }
-        }
-      }
-    }
-  }
+  position: relative;
+}
+.mainInfo {
+  width: 100%;
+  min-height: calc(100% - 270px);
+  background-image: url("../assets/image/data_empty.png");
+  background-size: 300px 200px;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 </style>

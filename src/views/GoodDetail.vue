@@ -16,12 +16,10 @@
     <!-- 主要内容区域 -->
     <div class="mainInfo">
       <div class="good_image" :style="{backgroundImage:'url('+itemDetail.url+')'}"></div>
-      <!-- <div class="good_image" ></div> -->
       <div class="good_info">
         <span class="good_name">{{itemDetail.name}}</span>
-        <span class="good_price">{{itemDetail.price}}</span>
+        <span class="good_price">￥{{itemDetail.price}}</span>
         <span class="good_intro" v-if="itemDetail.tips">{{itemDetail.tips}}</span>
-        <!-- <span class="good_color">{{itemDetail.color}}</span> -->
         <div class="levelCover">
           <span class="levelTitle">新旧程度：</span>
           <div class="good_level">
@@ -175,142 +173,26 @@ export default {
         localStorage.setItem("goodList", JSON.stringify(goodList));
       }
       this.goodList = JSON.parse(localStorage.getItem("goodList"));
-      console.log(this.goodList);
     }
   },
   beforeMount: function() {
     this.itemDetail = JSON.parse(localStorage.good);
-    this.goodList = JSON.parse(localStorage.getItem("goodList"));
+    if (localStorage.getItem("goodList")) {
+      this.goodList = JSON.parse(localStorage.getItem("goodList"));
+    } else {
+      this.goodList = [];
+    }
   },
   mounted: function() {}
 };
 </script>
 
 <style lang='less' scoped='' type='text/css'>
+@import '../css/topBanner.less';
+@import "../css/footer.less";
 .topCover {
   width: 100%;
   height: 100%;
-  .topBanner {
-    width: calc(100% - 400px);
-    height: 50px;
-    background-color: rgb(37, 37, 37);
-    padding: 0 200px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-direction: row;
-    font-size: 16px;
-    color: rgb(255, 253, 253);
-    font-weight: 400;
-    cursor: pointer;
-    .topLeft {
-      height: 100%;
-      display: flex;
-      justify-content: flex-start;
-      align-items: center;
-      flex-direction: row;
-      .logo {
-        width: 100px;
-        height: 100%;
-        background-image: url("../assets/image/logo4.png");
-        background-size: contain;
-        background-repeat: no-repeat;
-        background-position: center;
-      }
-      .toIndex {
-        margin-left: 40px;
-        position: relative;
-        &::after {
-          content: "";
-          width: 0%;
-          height: 0px;
-          background-color: rgb(255, 255, 255);
-          position: absolute;
-          left: 50%;
-          bottom: -10px;
-          transition: all 0.2s;
-        }
-        &:hover {
-          color: rgb(255, 255, 255);
-          font-weight: 400;
-          &::after {
-            left: 0%;
-            width: 100%;
-            height: 2px;
-          }
-        }
-      }
-    }
-    .topRight {
-      height: 100%;
-      display: flex;
-      justify-content: flex-start;
-      align-items: center;
-      flex-direction: row;
-      .toUser {
-        width: 24px;
-        height: 24px;
-        background-image: url("../assets/image/user.png");
-        background-size: contain;
-        background-repeat: no-repeat;
-        margin: 0 40px;
-        position: relative;
-        &::after {
-          content: "";
-          width: 0%;
-          height: 0px;
-          background-color: rgb(255, 255, 255);
-          position: absolute;
-          left: 50%;
-          bottom: -10px;
-          transition: all 0.2s;
-        }
-        &:hover {
-          &::after {
-            left: 0%;
-            width: 100%;
-            height: 2px;
-          }
-        }
-      }
-      .toShopCar {
-        width: 24px;
-        height: 24px;
-        background-image: url("../assets/image/shopCar.png");
-        background-size: contain;
-        background-repeat: no-repeat;
-        position: relative;
-        &::after {
-          content: "";
-          width: 0%;
-          height: 0px;
-          background-color: rgb(255, 255, 255);
-          position: absolute;
-          left: 50%;
-          bottom: -10px;
-          transition: all 0.2s;
-        }
-        &:hover {
-          &::after {
-            left: 0%;
-            width: 100%;
-            height: 2px;
-          }
-        }
-        .goodNum {
-          background-color: #f56c6c;
-          min-width: 20px;
-          height: 20px;
-          border-radius: 10px;
-          color: #fff;
-          font-size: 14px;
-          position: absolute;
-          right: -10px;
-          top: -10px;
-        }
-      }
-    }
-  }
   .mainInfo {
     width: calc(100% - 400px);
     min-height: calc(100% - 370px);
@@ -353,7 +235,6 @@ export default {
       .good_intro {
         display: block;
         width: 100%;
-        height: 40px;
         line-height: 40px;
         font-size: 16px;
         color: rgb(39, 39, 39);
@@ -437,125 +318,6 @@ export default {
           &.addCar {
             background: #000;
             color: #fff;
-          }
-        }
-      }
-    }
-  }
-  .footer {
-    width: calc(100% - 400px);
-    padding: 10px 200px;
-    height: 200px;
-    background-color: #000;
-    color: #fff;
-    overflow: hidden;
-    .JD_banner {
-      width: 100%;
-      padding: 0;
-      margin: 0;
-      list-style: none;
-      display: flex;
-      justify-content: space-around;
-      align-content: center;
-      flex-direction: row;
-      margin: 10px 0;
-      li {
-        display: flex;
-        justify-content: flex-start;
-        align-items: center;
-        flex-direction: row;
-        height: 50px;
-        line-height: 50px;
-        .icon_JD {
-          width: 36px;
-          height: 42px;
-          &.one {
-            background-image: url("../assets/image/jd1.png");
-            background-size: 100%;
-            background-repeat: no-repeat;
-          }
-          &.two {
-            background-image: url("../assets/image/jd2.png");
-            background-size: 100%;
-            background-repeat: no-repeat;
-          }
-          &.three {
-            background-image: url("../assets/image/jd3.png");
-            background-size: 100%;
-            background-repeat: no-repeat;
-          }
-          &.four {
-            background-image: url("../assets/image/jd4.png");
-            background-size: 100%;
-            background-repeat: no-repeat;
-          }
-        }
-        .text_JD {
-          margin-left: 10px;
-          height: 50px;
-          font-size: 22px;
-          color: #fff;
-          font-weight: bold;
-        }
-      }
-    }
-    .bottomPart {
-      width: 100%;
-      border-top: 1px solid #ccc;
-      .bottom_list {
-        width: calc(100% - 60px);
-        list-style: none;
-        margin: 0;
-        padding: 0;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-around;
-        align-items: center;
-        height: 30px;
-        padding: 10px 30px;
-        li {
-          font-size: 12px;
-          color: #ccc;
-          &:hover {
-            color: #ff0000;
-            cursor: pointer;
-          }
-        }
-        i {
-          width: 1px;
-          height: 16px;
-          background-color: #ccc;
-        }
-      }
-      .bottom_list2 {
-        width: calc(100% - 60px);
-        list-style: none;
-        margin: 10px 0 0 0;
-        padding: 0;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        height: 30px;
-        padding: 10px 30px;
-        li {
-          width: 100%;
-          height: 20px;
-          margin-bottom: 5px;
-
-          span {
-            display: inline-block;
-            font-size: 12px;
-            color: #ccc;
-            padding: 0 10px;
-            border-right: 1px solid #ccc;
-            cursor: pointer;
-            &:hover {
-              color: #ff0000;
-            }
-            &:last-child {
-              border: 0;
-            }
           }
         }
       }

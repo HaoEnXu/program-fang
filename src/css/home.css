@@ -1,38 +1,41 @@
 .homecover {
-  width: calc(100% - 400px);
-  padding: 100px 200px 0;
-  background-image: linear-gradient(to bottom, #98b1fd, #dcd7f7);
+  width: 100%;
+  background-color: #fff;
   position: relative;
 }
 .homecover .header {
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
+  width: calc(100% - 400px);
   height: 100px;
-  background-color: #f5f5f5;
-  background-image: url("../assets/image/home_bg.jpg");
+  padding: 0 200px;
+  background-color: #000000;
+  background-image: url("../assets/image/logo4.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
 }
 .homecover .topBanner {
-  width: 100%;
+  width: calc(100% - 400px);
+  padding: 0 200px;
   height: 80px;
-  background-color: #fff;
+  background-color: #000000;
   position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  color: #fff;
 }
 .homecover .topBanner .logo {
   width: 14%;
   height: 80px;
   display: inline-block;
-  background-image: url("../assets/image/logo1.png");
-  background-size: 100%;
+  background-image: url("../assets/image/logo4.png");
+  background-size: contain;
   background-repeat: no-repeat;
-  background-position: center center;
-  position: absolute;
-  left: 0;
-  top: 0;
+  background-position: left;
 }
 .homecover .topBanner .searchArea {
   width: 500px;
@@ -41,9 +44,6 @@
   justify-content: space-around;
   align-items: center;
   flex-direction: column;
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
 }
 .homecover .topBanner .searchArea .searchInput {
   width: 100%;
@@ -77,94 +77,105 @@
 .homecover .topBanner .searchArea .hotKey .hotList li:hover {
   color: #ff0000;
 }
-.homecover .topBanner .personInfo {
-  width: 14%;
+.homecover .topBanner .banner_right {
+  width: 10%;
   height: 100%;
-  position: absolute;
-  right: 0;
-  top: 0;
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: row;
+  align-items: center;
+}
+.homecover .topBanner .banner_right .personInfo {
+  width: 50%;
+  height: 50%;
   display: flex;
   justify-content: space-around;
   align-items: center;
   flex-direction: column;
+  cursor: pointer;
 }
-.homecover .topBanner .personInfo .userHead {
+.homecover .topBanner .banner_right .personInfo .userHead {
   display: block;
-  width: 30%;
-  height: 60%;
-  background-image: url("../assets/image/userHead.png");
+  width: 100%;
+  height: 100%;
+  background-image: url("../assets/image/user_white.png");
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
 }
-.homecover .topBanner .personInfo .userTips {
+.homecover .topBanner .banner_right .personInfo .userTips {
   font-size: 14px;
   color: #a2a2a2;
   font-weight: 400;
 }
+.homecover .topBanner .banner_right .to_shopCar {
+  width: 50%;
+  height: 50%;
+  background-image: url("../assets/image/shop_index.png");
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  cursor: pointer;
+}
 .homecover .slideBar {
-  width: 100%;
-  height: 600px;
-  padding-top: 40px;
+  width: calc(100% - 400px);
+  padding: 0 200px;
   background-color: #fff;
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  flex-direction: row;
-  box-shadow: 0px 3px 10px #1f4bcf;
+  flex-direction: column;
   overflow: hidden;
 }
 .homecover .slideBar .leftArea {
-  width: 200px;
-  height: 100%;
-  background-color: #fff;
+  width: 100%;
+  height: 50px;
+  padding: 0 0 0;
+  background-color: #ffffff;
   display: flex;
-  justify-content: flex-start;
-  flex-direction: column;
+  justify-content: space-between;
+  flex-direction: row;
   align-items: center;
 }
 .homecover .slideBar .leftArea .leftItem {
-  width: calc(100% - 2px);
+  width: 100%;
   height: 50px;
   line-height: 50px;
   font-size: 16px;
   text-align: center;
-  border: 1px solid #f1f1f1;
   background-color: #fff;
   color: #000;
-  border-radius: 5px;
   font-weight: 400;
   animation: show 0.5s ease-in-out;
   cursor: pointer;
 }
 .homecover .slideBar .leftArea .leftItem:hover {
-  background-color: #aaaaaa;
+  background-color: #818181;
   color: #fff;
 }
 .homecover .slideBar .leftArea .leftItem.active {
-  background-color: #868585;
+  background-color: #000000;
   color: #fff;
 }
 .homecover .slideBar .rightArea {
-  width: calc(100% - 200px);
-  height: calc(100% - 2px);
-  border: 1px solid #ccc;
+  width: calc(100% - 2px);
+  border: 1px solid #aaa;
   display: flex;
+  flex-flow: row wrap;
   justify-content: space-between;
-  flex-direction: column;
   align-items: center;
 }
 .homecover .slideBar .rightArea .itemCover {
   width: 100%;
-  height: 90%;
   display: flex;
-  justify-content: space-around;
-  align-items: center;
-  flex-direction: row;
-  flex-wrap: wrap;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+  font-size: 0;
 }
 .homecover .slideBar .rightArea .itemCover .itemDetail {
-  width: 22%;
+  width: calc(21% - 2px);
+  margin: 20px 2%;
   height: 150px;
   border: 1px solid #ccc;
   background-color: #fff;
@@ -220,7 +231,7 @@
 }
 .homecover .slideBar .rightArea .paging {
   width: 100%;
-  height: 10%;
+  height: 50px;
   position: relative;
 }
 .homecover .slideBar .rightArea .paging .el-pagination {
@@ -230,30 +241,43 @@
   transform: translate(-50%, -50%);
 }
 .homecover .recommend {
-  width: calc(100% - 40px);
+  width: calc(100% - 400px);
   background-color: #fff;
-  padding: 10px 20px;
+  padding: 10px 200px 50px;
+  position: relative;
 }
 .homecover .recommend .recommend_title {
   display: block;
-  width: 100px;
+  width: 100%;
+  text-align: center;
   height: 30px;
+  line-height: 30px;
   font-size: 24px;
   color: #0e0d0d;
   border-radius: 1px;
   position: relative;
   font-weight: bold;
-  margin: 30px 0;
+  margin: 50px 0;
 }
 .homecover .recommend .recommend_title::after {
   content: "";
-  width: 50px;
+  width: 45%;
   height: 2px;
-  background: #f33c3c;
+  background: #000;
   position: absolute;
-  bottom: -10px;
-  left: 50%;
-  transform: translateX(-50%);
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+}
+.homecover .recommend .recommend_title::before {
+  content: "";
+  width: 45%;
+  height: 2px;
+  background: #000;
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
 }
 .homecover .recommend .recomment_content {
   width: 100%;
@@ -279,8 +303,9 @@
   text-align: center;
   font-weight: bold;
   font-size: 30px;
-  color: #000;
-  text-shadow: 0 2px 2px #fab700;
+  color: #fff;
+  background-color: #000;
+  text-shadow: 0 3px 3px #fab700;
 }
 .homecover .recommend .recomment_content .item_cover .item_content {
   width: 20%;
@@ -288,6 +313,7 @@
   border: 1px solid #ccc;
   box-shadow: 0 4px 4px #ccc;
   border-radius: 20px;
+  cursor: pointer;
 }
 .homecover .recommend .recomment_content .item_cover .item_content:hover {
   animation: show 0.3s ease-in-out;
@@ -333,9 +359,10 @@
   border: 1px solid #ccc;
 }
 .homecover .footer {
-  width: 100%;
-  padding: 20px 0;
-  background-color: #fff;
+  width: calc(100% - 400px);
+  padding: 10px 200px;
+  background-color: #000;
+  color: #fff;
   overflow: hidden;
 }
 .homecover .footer .JD_banner {
@@ -385,7 +412,7 @@
   margin-left: 10px;
   height: 50px;
   font-size: 22px;
-  color: #000;
+  color: #fff;
   font-weight: bold;
 }
 .homecover .footer .bottomPart {

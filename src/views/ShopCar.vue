@@ -8,7 +8,7 @@
       </div>
       <div class="topRight">
         <span class="toUser" v-on:click="toPerson"></span>
-        <div class="toShopCar" >
+        <div class="toShopCar">
           <span class="goodNum" v-if="dataList.length != 0">{{dataList.length}}</span>
         </div>
       </div>
@@ -16,7 +16,7 @@
     <!-- 内容列表 -->
     <div class="goodList">
       <div class="empty" v-if="dataList.length == 0"></div>
-      <div class="goodItem" v-for="(item,index) in dataList" v-bind:key="index">
+      <div class="goodItem" v-else v-for="(item,index) in dataList" v-bind:key="index">
         <div
           class="chooseBtn"
           v-bind:class="{active:item.choose == true}"
@@ -25,7 +25,7 @@
         <div class="goodInfo">
           <span class="good_img" :style="{backgroundImage:'url('+item.url+')'}"></span>
           <span class="good_name">{{item.name}}</span>
-          <span class="good_price">{{item.price}}</span>
+          <span class="good_price">￥{{item.price}}</span>
           <span class="good_type" v-if="item.type == 1">全新闲置</span>
           <span class="good_type" v-else-if="item.type == 2">全新瑕疵</span>
           <span class="good_type" v-else-if="item.type == 3">九成新</span>
@@ -149,18 +149,14 @@ export default {
       const item = params;
       if (item.choose == true) {
         item.choose = !item.choose;
-        this.totalPrice -= parseFloat(
-          item.price.indexOf("￥") == -1 ? item.price.substr(1) : item.price
-        );
+        this.totalPrice -= parseInt(item.price);
         this.chooseList.forEach((val, index) => {
           if (val.id == item.id) {
             this.chooseList.splice(index, 1);
           }
         });
       } else {
-        this.totalPrice += parseFloat(
-          item.price.indexOf("￥") == -1 ? item.price.substr(1) : item.price
-        );
+        this.totalPrice += parseInt(item.price);
         item.choose = !item.choose;
         this.chooseList.push(item);
       }
@@ -185,9 +181,7 @@ export default {
           this.dataList.forEach(val => {
             val.choose = true;
             this.chooseList.push(val);
-            this.totalPrice += parseFloat(
-              val.price.indexOf("￥") == -1 ? val.price.substr(1) : val.price
-            );
+            this.totalPrice += parseInt(val.price);
           });
           this.hasAll = true;
           this.canBuy = true;
@@ -210,10 +204,7 @@ export default {
           localStorage.setItem("goodList", JSON.stringify(this.dataList));
         }
       });
-      item.choose
-        ? (this.totalPrice -=
-            item.price.indexOf("￥") == -1 ? item.price.substr(1) : item.price)
-        : "";
+      item.choose ? (this.totalPrice -= item.price) : "";
       this.chooseList.forEach((val, index) => {
         if (val.id == item.id) {
           this.chooseList.splice(index, 1);
@@ -229,149 +220,36 @@ export default {
     }
   },
   beforeMount: function() {
-    this.dataList = JSON.parse(localStorage.getItem("goodList"));
-    this.dataList.forEach(val => {
-      val.choose = false;
-    });
+    if (localStorage.getItem("goodList")) {
+      this.dataList = JSON.parse(localStorage.getItem("goodList"));
+      this.dataList.forEach(val => {
+        val.choose = false;
+      });
+    } else {
+      this.dataList = [];
+    }
   }
 };
 </script>
 
 <style lang='less' scoped='' type='text/css'>
+@import '../css/topBanner.less';
+@import '../css/footer.less';
 .topCover {
   width: 100%;
   height: 100%;
   background-color: #fff;
-  .topBanner {
-    width: calc(100% - 400px);
-    height: 50px;
-    background-color: rgb(37, 37, 37);
-    padding: 0 200px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-direction: row;
-    font-size: 16px;
-    color: rgb(255, 253, 253);
-    font-weight: 400;
-    cursor: pointer;
-    .topLeft {
-      height: 100%;
-      display: flex;
-      justify-content: flex-start;
-      align-items: center;
-      flex-direction: row;
-      .logo {
-        width: 100px;
-        height: 100%;
-        background-image: url("../assets/image/logo4.png");
-        background-size: contain;
-        background-repeat: no-repeat;
-        background-position: center;
-      }
-      .toIndex {
-        margin-left: 40px;
-        position: relative;
-        &::after {
-          content: "";
-          width: 0%;
-          height: 0px;
-          background-color: rgb(255, 255, 255);
-          position: absolute;
-          left: 50%;
-          bottom: -10px;
-          transition: all 0.2s;
-        }
-        &:hover {
-          color: rgb(255, 255, 255);
-          font-weight: 400;
-          &::after {
-            left: 0%;
-            width: 100%;
-            height: 2px;
-          }
-        }
-      }
-    }
-    .topRight {
-      height: 100%;
-      display: flex;
-      justify-content: flex-start;
-      align-items: center;
-      flex-direction: row;
-      .toUser {
-        width: 24px;
-        height: 24px;
-        background-image: url("../assets/image/user.png");
-        background-size: contain;
-        background-repeat: no-repeat;
-        margin: 0 40px;
-        position: relative;
-        &::after {
-          content: "";
-          width: 0%;
-          height: 0px;
-          background-color: rgb(255, 255, 255);
-          position: absolute;
-          left: 50%;
-          bottom: -10px;
-          transition: all 0.2s;
-        }
-        &:hover {
-          &::after {
-            left: 0%;
-            width: 100%;
-            height: 2px;
-          }
-        }
-      }
-      .toShopCar {
-        width: 24px;
-        height: 24px;
-        background-image: url("../assets/image/shopCar.png");
-        background-size: contain;
-        background-repeat: no-repeat;
-        position: relative;
-        &::after {
-          content: "";
-          width: 0%;
-          height: 0px;
-          background-color: rgb(255, 255, 255);
-          position: absolute;
-          left: 50%;
-          bottom: -10px;
-          transition: all 0.2s;
-        }
-        &:hover {
-          &::after {
-            left: 0%;
-            width: 100%;
-            height: 2px;
-          }
-        }
-        .goodNum {
-          display: block;
-          padding: 0 5px;
-          background-color: #f56c6c;
-          height: 20px;
-          line-height: 20px;
-          text-align: center;
-          border-radius: 10px;
-          color: #fff;
-          font-size: 14px;
-          position: absolute;
-          right: -10px;
-          top: -10px;
-        }
-      }
-    }
-  }
+  
   .goodList {
     width: calc(100% - 400px);
     min-height: calc(100% - 410px);
     margin: 0 200px;
     background-color: #fff;
+    position: relative;
     .empty {
+      position: absolute;
+      left: 0;
+      top: 0;
       width: 100%;
       height: 100%;
       background-image: url("../assets/image/data_empty.png");
@@ -547,124 +425,6 @@ export default {
       }
     }
   }
-  .footer {
-    width: calc(100% - 400px);
-    padding: 10px 200px;
-    height: 200px;
-    background-color: #000;
-    color: #fff;
-    overflow: hidden;
-    .JD_banner {
-      width: 100%;
-      padding: 0;
-      margin: 0;
-      list-style: none;
-      display: flex;
-      justify-content: space-around;
-      align-content: center;
-      flex-direction: row;
-      margin: 10px 0;
-      li {
-        display: flex;
-        justify-content: flex-start;
-        align-items: center;
-        flex-direction: row;
-        height: 50px;
-        line-height: 50px;
-        .icon_JD {
-          width: 36px;
-          height: 42px;
-          &.one {
-            background-image: url("../assets/image/jd1.png");
-            background-size: 100%;
-            background-repeat: no-repeat;
-          }
-          &.two {
-            background-image: url("../assets/image/jd2.png");
-            background-size: 100%;
-            background-repeat: no-repeat;
-          }
-          &.three {
-            background-image: url("../assets/image/jd3.png");
-            background-size: 100%;
-            background-repeat: no-repeat;
-          }
-          &.four {
-            background-image: url("../assets/image/jd4.png");
-            background-size: 100%;
-            background-repeat: no-repeat;
-          }
-        }
-        .text_JD {
-          margin-left: 10px;
-          height: 50px;
-          font-size: 22px;
-          color: #fff;
-          font-weight: bold;
-        }
-      }
-    }
-    .bottomPart {
-      width: 100%;
-      border-top: 1px solid #ccc;
-      .bottom_list {
-        width: calc(100% - 60px);
-        list-style: none;
-        margin: 0;
-        padding: 0;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-around;
-        align-items: center;
-        height: 30px;
-        padding: 10px 30px;
-        li {
-          font-size: 12px;
-          color: #ccc;
-          &:hover {
-            color: #ff0000;
-            cursor: pointer;
-          }
-        }
-        i {
-          width: 1px;
-          height: 16px;
-          background-color: #ccc;
-        }
-      }
-      .bottom_list2 {
-        width: calc(100% - 60px);
-        list-style: none;
-        margin: 10px 0 0 0;
-        padding: 0;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        height: 30px;
-        padding: 10px 30px;
-        li {
-          width: 100%;
-          height: 20px;
-          margin-bottom: 5px;
-
-          span {
-            display: inline-block;
-            font-size: 12px;
-            color: #ccc;
-            padding: 0 10px;
-            border-right: 1px solid #ccc;
-            cursor: pointer;
-            &:hover {
-              color: #ff0000;
-            }
-            &:last-child {
-              border: 0;
-            }
-          }
-        }
-      }
-    }
-  }
+  
 }
 </style>
