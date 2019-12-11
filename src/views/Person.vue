@@ -49,6 +49,14 @@
           <span class="tips">年龄：</span>
           <el-input v-model="baseUser.age" placeholder="请输入年龄" @change="changeAge"></el-input>
         </div>
+        <div class="mc_item userAge">
+          <span class="tips">邮箱：</span>
+          <el-input v-model="baseUser.email" placeholder="请输入邮箱" @change="changeEmail"></el-input>
+        </div>
+        <div class="mc_item userAge">
+          <span class="tips">联系方式：</span>
+          <el-input v-model="baseUser.phone" placeholder="请输入联系方式" @change="changePhone"></el-input>
+        </div>
         <div class="mc_item userAddress">
           <span class="tips">收货地址：</span>
           <el-table :data="tableData" style="width: 100%">
@@ -70,7 +78,32 @@
         </div>
       </div>
       <!-- 我的订单 -->
-      <div class="main_content" v-else-if="current_main == 1"></div>
+      <div class="main_content" v-else-if="current_main == 1">
+        <div class="orderList">
+          <div class="orderItem" v-for="(item,index) in orderList" v-bind:key="index">
+             <!-- 基本信息 -->
+             <div class="orderBase">
+               <span class="orderImage" :style="{backgroundImage:'url('+item.url+')'}"></span>
+               <span class="orderName">{{item.name}}</span>
+               <span class="orderPrice">￥{{item.price}}</span>
+               <span class="orderLevel">{{item.level}}</span>
+             </div>
+             <!-- 收件人信息 -->
+             <div class="orderReceipt">
+               <span class="receiptName">{{item.receiptName}}</span>
+               <span class="receiptPhone">{{item.receiptPhone}}</span>
+               <span class="receiptAddress">{{item.receiptAddress}}</span>
+             </div>
+             <!-- 交易信息 -->
+             <div class="orderTrad">
+               <span class="orderNum">{{item.orderNum}}</span>
+               <span class="orderMerChant">{{item.orderMerChant}}</span>
+               <span class="orderDate">{{item.orderDate}}</span>
+               <span class="orderStauts">{{item.orderStauts}}</span>
+             </div>
+          </div>
+        </div>
+      </div>
       <!-- 我的零售 -->
       <div class="main_content" v-else></div>
     </div>
@@ -197,7 +230,9 @@ export default {
       baseUser: {
         name: "",
         sex: 0,
-        age: ""
+        age: "",
+        email:'',
+        phone:''
       },
       // 收货地址信息
       tableData: [
@@ -238,12 +273,55 @@ export default {
         phone: "",
         address: ""
       },
-      // 要修改的地址
+      // 修改的地址信息
       alterItem: {
         name: "",
         phone: "",
         address: ""
-      }
+      },
+
+      // 订单
+      orderList:[
+        {
+          url:'/static/hotRecomment/shoes/1/2.jpg',
+          name:'AIR Jordan 1 伦纳德',
+          price:'651',
+          level:1,
+          receiptName:'李磊',
+          receiptPhone:'13245678910',
+          receiptAddress:'北京市海淀区康庄道',
+          orderNum:13161616181615,
+          orderMerChant:'京东小店',
+          orderDate:'2019-10-5',
+          orderStauts:1
+        },
+        {
+          url:'/static/hotRecomment/shoes/1/3.jpg',
+          name:'AIR Jordan 1 黑舌',
+          price:'584',
+          level:2,
+          receiptName:'李磊',
+          receiptPhone:'13245678910',
+          receiptAddress:'北京市海淀区康庄道',
+          orderNum:13161616181615,
+          orderMerChant:'京东小店',
+          orderDate:'2019-2-1',
+          orderStauts:2
+        },
+        {
+          url:'/static/hotRecomment/shoes/1/4.jpg',
+          name:'AIR Jordan 1 骚粉',
+          price:'352',
+          level:3,
+          receiptName:'李磊',
+          receiptPhone:'13245678910',
+          receiptAddress:'北京市海淀区康庄道',
+          orderNum:1316162123231615,
+          orderMerChant:'京东小店',
+          orderDate:'2019-1-5',
+          orderStauts:3
+        }
+      ]
     };
   },
   methods: {
@@ -283,6 +361,12 @@ export default {
     },
     // 请求-修改年龄
     changeAge: function(param) {
+      console.log(param);
+    },
+    changeEmail: function(param) {
+      console.log(param);
+    },
+    changePhone: function(param) {
       console.log(param);
     },
     // 编辑收货地址
@@ -349,6 +433,7 @@ export default {
 <style lang='less' scoped='' type='text/css'>
 @import "../css/topBanner.less";
 @import "../css/footer.less";
+@import "../css/personOrder.less";
 .topCover {
   width: 100%;
   height: 100%;
