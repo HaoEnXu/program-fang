@@ -70,6 +70,7 @@
     <!-- 分页 -->
     <div class="paging">
       <el-pagination
+        v-if="hasSearch"
         @size-change="handleSizeChange"
         @current-change="handleCurrentChange"
         :current-page="currentPage"
@@ -166,7 +167,7 @@ export default {
       size: 6,
       currentPage: 1, //初始页
       pagesize: 6,
-
+      hasSearch: true,
       // 搜索
       hasValue: true
     };
@@ -217,7 +218,13 @@ export default {
     toSearch: function() {
       this.sortIndex = 0;
       const keyWord = this.newSearch;
+      this.currentPage = 1;
+      this.hasSearch = false;
+      this.$nextTick(() => {
+        this.hasSearch = true;
+      });
       // 发起请求-重新赋值
+
     },
     // 控制搜索按钮的开启和禁用
     change: function(param) {
@@ -242,7 +249,6 @@ export default {
           this.dataList = res.data.data.list;
           this.hasData = true;
         }
-        console.log(this.dataList);
       });
   }
 };
