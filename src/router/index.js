@@ -6,6 +6,7 @@ import GoodDetail from '../views/GoodDetail'
 import shopCar from '../views/ShopCar'
 import person from '../views/Person'
 import search from '../views/Search'
+import admin from '../views/Admin'
 
 Vue.use(Router)
 
@@ -43,8 +44,13 @@ export default new Router({
     },
     {
       path:'/search',
-      nameL:'search',
+      name:'search',
       component:search
+    },
+    {
+      path:'/admin',
+      name:'admin',
+      component:admin
     }
   ]
 })

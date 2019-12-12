@@ -114,3 +114,96 @@ Mock.mock(`http://localhost:8086/goods/findBySelectGoods`, `post`, (option) => {
   }
 
 })
+// 请求用户数据
+Mock.mock(`/userList`, `get`, (option) => {
+  return {
+    data: [{
+      "id": 1,
+      "name": "猪猪侠",
+      "userName": "猪猪侠",
+      "sex": "男",
+      "age": "21",
+      "phone": "12345678910",
+      "email": "123@qq.com",
+      "address": "天津",
+      "isDelete": false
+    }, {
+      "id": 2,
+      "name": "皮卡丘",
+      "userName": "皮卡丘",
+      "sex": "男",
+      "age": "21",
+      "phone": "12345678910",
+      "email": "123@qq.com",
+      "address": "天津",
+      "isDelete": false
+
+    }, {
+      "id": 3,
+      "name": "小胡",
+      "userName": "小胡",
+      "sex": "男",
+      "age": "21",
+      "phone": "12345678910",
+      "email": "123@qq.com",
+      "address": "天津",
+      "isDelete": false
+
+    }, {
+      "id": 4,
+      "name": "小李",
+      "userName": "小李",
+      "sex": "男",
+      "age": "21",
+      "phone": "12345678910",
+      "email": "123@qq.com",
+      "address": "天津",
+      "isDelete": false
+
+    }, {
+      "id": 5,
+      "name": "小周",
+      "userName": "小周",
+      "sex": "女",
+      "age": "21",
+      "phone": "12345678910",
+      "email": "123@qq.com",
+      "address": "天津",
+      "isDelete": false
+
+    }, {
+      "id": 6,
+      "name": "小兰",
+      "userName": "小兰",
+      "sex": "女",
+      "age": "21",
+      "phone": "12345678910",
+      "email": "123@qq.com",
+      "address": "天津",
+      "isDelete": false
+
+    }, {
+      "id": 7,
+      "name": "小路",
+      "userName": "小路",
+      "sex": "女",
+      "age": "21",
+      "phone": "12345678910",
+      "email": "123@qq.com",
+      "address": "天津",
+      "isDelete": false
+
+    }, {
+      "id": 8,
+      "name": "李琦",
+      "userName": "李琦",
+      "sex": "女",
+      "age": "21",
+      "phone": "12345678910",
+      "email": "123@qq.com",
+      "address": "天津",
+      "isDelete": false
+
+    }]
+  }
+})

@@ -1,110 +1,161 @@
 .topCover {
   width: 100%;
   height: 100%;
+  position: relative;
 }
-.topCover .topBanner {
+.mainInfo {
   width: calc(100% - 400px);
-  height: 50px;
-  background-color: #252525;
+  min-height: calc(100% - 270px);
   padding: 0 200px;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
-  flex-direction: row;
-  font-size: 16px;
-  color: #fffdfd;
-  font-weight: 400;
-  cursor: pointer;
+  flex-direction: column;
 }
-.topCover .topBanner .topLeft {
-  height: 100%;
+.mainInfo .main_banner {
+  width: 100%;
+  height: 50px;
   display: flex;
   justify-content: flex-start;
   align-items: center;
   flex-direction: row;
 }
-.topCover .topBanner .topLeft .logo {
+.mainInfo .main_banner .mb_item {
+  display: block;
+  width: 120px;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  font-size: 20px;
+  font-weight: 800;
+  position: relative;
+  cursor: pointer;
+  color: #9b9b9b;
+  transition: all 0.3s;
+}
+.mainInfo .main_banner .mb_item::before {
+  content: "";
+  width: 0;
+  height: 0;
+  border-right: 1px;
+  background-color: #000;
+  position: absolute;
+  left: 50%;
+  bottom: 5px;
+  transition: all 0.3s;
+}
+.mainInfo .main_banner .mb_item:hover {
+  color: #000;
+}
+.mainInfo .main_banner .mb_item.active {
+  color: #000;
+}
+.mainInfo .main_banner .mb_item.active::before {
+  width: 50%;
+  height: 2px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.mainInfo .main_banner .mb_item::after {
+  content: "";
+  width: 2px;
+  height: 20px;
+  background-color: #6e6e6e;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.mainInfo .main_banner .mb_item:last-child::after {
+  content: "";
+  width: 0;
+  height: 0;
+}
+.mainInfo .main_content {
+  width: calc(100% - 40px);
+  padding: 30px 20px 0;
+  background-color: #fff;
+}
+.mainInfo .main_content .mc_item {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: row;
+}
+.mainInfo .main_content .mc_item .tips {
   width: 100px;
-  height: 100%;
-  background-image: url("../assets/image/logo4.png");
+  height: 50px;
+  line-height: 50px;
+  text-align: left;
+  font-size: 16px;
+}
+.mainInfo .main_content .mc_item .el-input {
+  width: 400px;
+}
+.mainInfo .main_content .mc_item .sex_img {
+  display: block;
+  width: 30px;
+  height: 30px;
+  margin-right: 20px;
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
+  cursor: pointer;
 }
-.topCover .topBanner .topLeft .toIndex {
-  margin-left: 40px;
-  position: relative;
+.mainInfo .main_content .mc_item .sex_img.man {
+  background-image: url("../assets/image/man_base.png");
 }
-.topCover .topBanner .topLeft .toIndex::after {
-  content: "";
-  width: 0%;
-  height: 0px;
-  background-color: #ffffff;
-  position: absolute;
-  left: 50%;
-  bottom: -10px;
-  transition: all 0.2s;
+.mainInfo .main_content .mc_item .sex_img.woman {
+  background-image: url("../assets/image/woman_base.png");
 }
-.topCover .topBanner .topLeft .toIndex:hover {
-  color: #ffffff;
-  font-weight: 400;
+.mainInfo .main_content .mc_item .sex_img.active.man {
+  background-image: url("../assets/image/man_active.png");
 }
-.topCover .topBanner .topLeft .toIndex:hover::after {
-  left: 0%;
+.mainInfo .main_content .mc_item .sex_img.active.woman {
+  background-image: url("../assets/image/woman_active.png");
+}
+.mainInfo .main_content .add_address {
   width: 100%;
-  height: 2px;
+  height: 60px;
+  line-height: 60px;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+  align-items: center;
 }
-.topCover .topBanner .topRight {
+.mainInfo .main_content .add_address .addBtn {
+  display: block;
+  width: 120px;
+  height: 20px;
+  line-height: 20px;
+  background-color: #f89f2b;
+  padding: 10px 20px;
+  color: #fff;
+  font-size: 16px;
+  border-radius: 20px;
+  box-shadow: 0px 5px 5px #f5c88e;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+.mainInfo .main_content .add_address .addBtn:hover {
+  transform: scale(1.1);
+  box-shadow: 0px 5px 5px #f0b262;
+}
+.addressInfo {
+  width: 100%;
   height: 100%;
+}
+.addressInfo .newInfo {
+  width: 100%;
   display: flex;
   justify-content: flex-start;
   align-items: center;
   flex-direction: row;
+  margin-bottom: 20px;
 }
-.topCover .topBanner .topRight .toUser {
-  width: 24px;
-  height: 24px;
-  background-image: url("../assets/image/user.png");
-  background-size: contain;
-  background-repeat: no-repeat;
-  margin: 0 40px;
-  position: relative;
-}
-.topCover .topBanner .topRight .toUser::after {
-  content: "";
-  width: 0%;
-  height: 0px;
-  background-color: #ffffff;
-  position: absolute;
-  left: 50%;
-  bottom: -10px;
-  transition: all 0.2s;
-}
-.topCover .topBanner .topRight .toUser:hover::after {
-  left: 0%;
-  width: 100%;
-  height: 2px;
-}
-.topCover .topBanner .topRight .toShopCar {
-  width: 24px;
-  height: 24px;
-  background-image: url("../assets/image/shopCar.png");
-  background-size: contain;
-  background-repeat: no-repeat;
-  position: relative;
-}
-.topCover .topBanner .topRight .toShopCar::after {
-  content: "";
-  width: 0%;
-  height: 0px;
-  background-color: #ffffff;
-  position: absolute;
-  left: 50%;
-  bottom: -10px;
-  transition: all 0.2s;
-}
-.topCover .topBanner .topRight .toShopCar:hover::after {
-  left: 0%;
-  width: 100%;
-  height: 2px;
+.addressInfo .newInfo .newTips {
+  display: inline-block;
+  width: 100px;
+  text-align: left;
 }

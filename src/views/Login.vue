@@ -75,7 +75,7 @@ export default {
     // 登录
     login: function(e) {
       console.log("登录");
-      this.$router.push("/Home");
+      this.$router.push("/admin");
       // var checkLoginRelult = this.checkLogin();
       // if (checkLoginRelult == "登录账号为空") {
       //   alert("账号不能为空!");
