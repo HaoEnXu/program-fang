@@ -3,120 +3,27 @@
   height: 100%;
   background-color: #fff;
 }
-.topCover .topBanner {
-  width: calc(100% - 400px);
-  height: 50px;
-  background-color: #252525;
-  padding: 0 200px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-direction: row;
-  font-size: 16px;
-  color: #fffdfd;
-  font-weight: 400;
-  cursor: pointer;
-}
-.topCover .topBanner .topLeft {
-  height: 100%;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  flex-direction: row;
-}
-.topCover .topBanner .topLeft .logo {
-  width: 100px;
-  height: 100%;
-  background-image: url("../assets/image/logo4.png");
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-}
-.topCover .topBanner .topLeft .toIndex {
-  margin-left: 40px;
-  position: relative;
-}
-.topCover .topBanner .topLeft .toIndex::after {
-  content: "";
-  width: 0%;
-  height: 0px;
-  background-color: #ffffff;
-  position: absolute;
-  left: 50%;
-  bottom: -10px;
-  transition: all 0.2s;
-}
-.topCover .topBanner .topLeft .toIndex:hover {
-  color: #ffffff;
-  font-weight: 400;
-}
-.topCover .topBanner .topLeft .toIndex:hover::after {
-  left: 0%;
-  width: 100%;
-  height: 2px;
-}
-.topCover .topBanner .topRight {
-  height: 100%;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  flex-direction: row;
-}
-.topCover .topBanner .topRight .toUser {
-  width: 24px;
-  height: 24px;
-  background-image: url("../assets/image/user.png");
-  background-size: contain;
-  background-repeat: no-repeat;
-  margin: 0 40px;
-  position: relative;
-}
-.topCover .topBanner .topRight .toUser::after {
-  content: "";
-  width: 0%;
-  height: 0px;
-  background-color: #ffffff;
-  position: absolute;
-  left: 50%;
-  bottom: -10px;
-  transition: all 0.2s;
-}
-.topCover .topBanner .topRight .toUser:hover::after {
-  left: 0%;
-  width: 100%;
-  height: 2px;
-}
-.topCover .topBanner .topRight .toShopCar {
-  width: 24px;
-  height: 24px;
-  background-image: url("../assets/image/shopCar.png");
-  background-size: contain;
-  background-repeat: no-repeat;
-  position: relative;
-}
-.topCover .topBanner .topRight .toShopCar::after {
-  content: "";
-  width: 0%;
-  height: 0px;
-  background-color: #ffffff;
-  position: absolute;
-  left: 50%;
-  bottom: -10px;
-  transition: all 0.2s;
-}
-.topCover .topBanner .topRight .toShopCar:hover::after {
-  left: 0%;
-  width: 100%;
-  height: 2px;
-}
 .topCover .goodList {
   width: calc(100% - 400px);
-  margin: 20px 200px;
-  background-color: #f5f5f5;
+  min-height: calc(100% - 410px);
+  margin: 0 200px;
+  background-color: #fff;
+  position: relative;
+}
+.topCover .goodList .empty {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("../assets/image/data_empty.png");
+  background-size: 300px 200px;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 .topCover .goodList .goodItem {
-  width: calc(100% - 80px);
-  padding: 20px 40px;
+  width: calc(100% - 40px);
+  padding: 20px 0 20px 40px;
   background-color: #ffff;
   border-bottom: 4px solid #e9e9e9;
   position: relative;
@@ -145,7 +52,6 @@
   background-image: url("../assets/image/choose_active.png");
 }
 .topCover .goodList .goodItem .goodInfo {
-  width: 60%;
   height: 150px;
   display: flex;
   justify-content: space-around;
@@ -167,14 +73,21 @@
 .topCover .goodList .goodItem .goodInfo .good_price {
   font-size: 20px;
   font-weight: bold;
+  color: #f56c6c;
+  margin-left: 30px;
+}
+.topCover .goodList .goodItem .goodInfo .good_type {
+  font-size: 20px;
   color: #000;
+  font-weight: bold;
+  margin-left: 30px;
 }
 .topCover .goodList .goodItem .handleArea {
   width: 20%;
   height: 150px;
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: flex-end;
   align-items: center;
 }
 .topCover .goodList .goodItem .handleArea .change {
@@ -194,6 +107,8 @@
   background-color: #000;
   color: #fff;
   transition: all 0.3s;
+  margin-left: 40px;
+  border: 1px solid #000;
   cursor: pointer;
 }
 .topCover .goodList .goodItem .handleArea .delete:hover {
@@ -204,7 +119,7 @@
   margin: 20px 200px;
   padding-left: 40px;
   height: 100px;
-  background-color: #f2f2f2;
+  background-color: #ffffff;
   display: flex;
   justify-content: space-between;
   align-items: center;

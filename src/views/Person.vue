@@ -81,31 +81,67 @@
       <div class="main_content" v-else-if="current_main == 1">
         <div class="orderList">
           <div class="orderItem" v-for="(item,index) in orderList" v-bind:key="index">
-             <!-- 基本信息 -->
-             <div class="orderBase">
-               <span class="orderImage" :style="{backgroundImage:'url('+item.url+')'}"></span>
-               <span class="orderName">{{item.name}}</span>
-               <span class="orderPrice">￥{{item.price}}</span>
-               <span class="orderLevel">{{item.level}}</span>
-             </div>
-             <!-- 收件人信息 -->
-             <div class="orderReceipt">
-               <span class="receiptName">{{item.receiptName}}</span>
-               <span class="receiptPhone">{{item.receiptPhone}}</span>
-               <span class="receiptAddress">{{item.receiptAddress}}</span>
-             </div>
-             <!-- 交易信息 -->
-             <div class="orderTrad">
-               <span class="orderNum">{{item.orderNum}}</span>
-               <span class="orderMerChant">{{item.orderMerChant}}</span>
-               <span class="orderDate">{{item.orderDate}}</span>
-               <span class="orderStauts">{{item.orderStauts}}</span>
-             </div>
+            <!-- 基本信息 -->
+            <div class="orderBase">
+              <span class="orderImage" :style="{backgroundImage:'url('+item.url+')'}"></span>
+              <span class="orderName">{{item.name}}</span>
+              <span class="orderPrice">￥{{item.price}}</span>
+              <span class="orderLevel" v-if="item.level == 0">全新闲置</span>
+              <span class="orderLevel" v-else-if="item.level == 1">全新瑕疵</span>
+              <span class="orderLevel" v-else-if="item.level == 2">九成新</span>
+              <span class="orderLevel" v-else>正常新</span>
+            </div>
+            <!-- 收件人信息 -->
+            <div class="orderReceipt">
+              <span class="receiptName">收货人：{{item.receiptName}}</span>
+              <span class="receiptPhone">联系方式：{{item.receiptPhone}}</span>
+              <span class="receiptAddress">收货地址：{{item.receiptAddress}}</span>
+            </div>
+            <!-- 交易信息 -->
+            <div class="orderTrad">
+              <span class="orderNum">订单号：{{item.orderNum}}</span>
+              <span class="orderMerChant">店家：{{item.orderMerChant}}</span>
+              <span class="orderDate">下单日期：{{item.orderDate}}</span>
+              <el-steps
+                :space="400"
+                :active="item.orderStauts"
+                finish-status="success"
+                align-center
+              >
+                <el-step title="待发货"></el-step>
+                <el-step title="运输中"></el-step>
+                <el-step title="已揽收"></el-step>
+              </el-steps>
+            </div>
           </div>
         </div>
       </div>
       <!-- 我的零售 -->
-      <div class="main_content" v-else></div>
+      <div class="main_content" v-else>
+        <div class="retailCover">
+          <div class="retailItem" v-for="(item,index) in retailList" v-bind:key="index">
+            <span class="RI_img" :style="{backgroundImage:'url('+item.url+')'}"></span>
+            <span class="RI_name">{{item.name}}</span>
+            <span class="RI_price">￥{{item.price}}</span>
+            <span class="RI_description">{{item.description}}</span>
+            <span
+              class="RI_level"
+            >{{item.level==0?'全新闲置':item.level==1?'全新瑕疵':item.level==2?'九成新':'正常新'}}</span>
+            <span class="RI_createTime">创建于{{item.createTime}}</span>
+            <span class="RI_shape">{{item.shape}}</span>
+            <span class="RI_color">{{item.color}}</span>
+            <div class="retail_btn">
+              <span class="retail_modify" v-on:click="editRetail(item)">修改</span>
+              <span class="retail_delete" v-on:click="deleteRetail(item)">删除</span>
+            </div>
+          </div>
+          <div class="newRetail" v-on:click="openNewAlter">
+            <span class="newRetailBtn">
+              <i class="el-icon-plus"></i> 新建零售
+            </span>
+          </div>
+        </div>
+      </div>
     </div>
     <!-- 底栏 -->
     <div class="footer">
@@ -219,10 +255,97 @@
         <el-button type="primary" @click="sureAlter">确 定</el-button>
       </span>
     </el-dialog>
+    <!-- 新建零售信息 -->
+    <el-dialog
+      title="新建零售信息"
+      :visible.sync="newAlterDialog"
+      width="30%"
+      :before-close="newAlterClose"
+    >
+      <div class="newAlter">
+        <div class="newAlterInfo">
+          <span class="newAlterTips newName">名称：</span>
+          <el-input v-model="newAlter.name" clearable></el-input>
+        </div>
+        <div class="newAlterInfo">
+          <span class="newAlterTips newPhone">价格：</span>
+          <el-input v-model="newAlter.price" clearable></el-input>
+        </div>
+        <div class="newAlterInfo">
+          <span class="newAlterTips newDes">描述：</span>
+          <el-input v-model="newAlter.des" clearable></el-input>
+        </div>
+        <div class="newAlterInfo">
+          <span class="newAlterTips newUseInfo">使用情况：</span>
+          <div class="userInfo_Cover">
+            <el-radio v-model="newAlter.level" label="0">全新闲置</el-radio>
+            <el-radio v-model="newAlter.level" label="1">稍有瑕疵</el-radio>
+            <el-radio v-model="newAlter.level" label="2">九成新</el-radio>
+            <el-radio v-model="newAlter.level" label="3">正常新</el-radio>
+          </div>
+        </div>
+        <div class="newAlterInfo">
+          <span class="newAlterTips newShape">款式：</span>
+          <el-input v-model="newAlter.shape" clearable></el-input>
+        </div>
+        <div class="newAlterInfo">
+          <span class="newAlterTips newColor">颜色：</span>
+          <el-input v-model="newAlter.color" clearable></el-input>
+        </div>
+      </div>
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="cancelNewAlter">取 消</el-button>
+        <el-button type="primary" @click="sureNewAlter">确 定</el-button>
+      </span>
+    </el-dialog>
+    <!-- 编辑零售信息 -->
+    <el-dialog
+      title="修改零售信息"
+      :visible.sync="editAlterDialog"
+      width="30%"
+      :before-close="editAlterClose"
+    >
+      <div class="newAlter">
+        <div class="newAlterInfo">
+          <span class="newAlterTips newName">名称：</span>
+          <el-input v-model="editAlter.name" clearable></el-input>
+        </div>
+        <div class="newAlterInfo">
+          <span class="newAlterTips newPhone">价格：</span>
+          <el-input v-model="editAlter.price" clearable></el-input>
+        </div>
+        <div class="newAlterInfo">
+          <span class="newAlterTips newDes">描述：</span>
+          <el-input v-model="editAlter.des" clearable></el-input>
+        </div>
+        <div class="newAlterInfo">
+          <span class="newAlterTips newUseInfo">使用情况：</span>
+          <div class="userInfo_Cover">
+            <el-radio v-model="editAlter.level" label="0">全新闲置</el-radio>
+            <el-radio v-model="editAlter.level" label="1">稍有瑕疵</el-radio>
+            <el-radio v-model="editAlter.level" label="2">九成新</el-radio>
+            <el-radio v-model="editAlter.level" label="3">正常新</el-radio>
+          </div>
+        </div>
+        <div class="newAlterInfo">
+          <span class="newAlterTips newShape">款式：</span>
+          <el-input v-model="editAlter.shape" clearable></el-input>
+        </div>
+        <div class="newAlterInfo">
+          <span class="newAlterTips newColor">颜色：</span>
+          <el-input v-model="editAlter.color" clearable></el-input>
+        </div>
+      </div>
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="cancelEditAlter">取 消</el-button>
+        <el-button type="primary" @click="sureEditAlter">确 定</el-button>
+      </span>
+    </el-dialog>
   </div>
 </template>
 
 <script type='text/ecmascript-6'>
+import timeDeal from "../utils/timeDetail";
 export default {
   data() {
     return {
@@ -231,8 +354,8 @@ export default {
         name: "",
         sex: 0,
         age: "",
-        email:'',
-        phone:''
+        email: "",
+        phone: ""
       },
       // 收货地址信息
       tableData: [
@@ -267,6 +390,8 @@ export default {
       // 遮罩层
       addDialog: false,
       AlterDialog: false,
+      newAlterDialog: false,
+      editAlterDialog:false,
       // 新的收货信息
       newAddress: {
         name: "",
@@ -279,49 +404,103 @@ export default {
         phone: "",
         address: ""
       },
+      newAlter: {
+        url: "",
+        name: "",
+        price: "",
+        des: "",
+        level: 1,
+        shape: "",
+        color: ""
+      },
+      editAlter: {
+        url: "",
+        name: "",
+        price: "",
+        des: "",
+        level: 1,
+        shape: "",
+        color: ""
+      },
 
       // 订单
-      orderList:[
+      orderList: [
         {
-          url:'/static/hotRecomment/shoes/1/2.jpg',
-          name:'AIR Jordan 1 伦纳德',
-          price:'651',
-          level:1,
-          receiptName:'李磊',
-          receiptPhone:'13245678910',
-          receiptAddress:'北京市海淀区康庄道',
-          orderNum:13161616181615,
-          orderMerChant:'京东小店',
-          orderDate:'2019-10-5',
-          orderStauts:1
+          url: "/static/hotRecomment/shoes/1/2.jpg",
+          name: "AIR Jordan 1 伦纳德",
+          price: "651",
+          level: 1,
+          receiptName: "李磊",
+          receiptPhone: "13245678910",
+          receiptAddress: "北京市海淀区康庄道",
+          orderNum: 13161616181615,
+          orderMerChant: "京东小店",
+          orderDate: "2019-10-5",
+          orderStauts: 1
         },
         {
-          url:'/static/hotRecomment/shoes/1/3.jpg',
-          name:'AIR Jordan 1 黑舌',
-          price:'584',
-          level:2,
-          receiptName:'李磊',
-          receiptPhone:'13245678910',
-          receiptAddress:'北京市海淀区康庄道',
-          orderNum:13161616181615,
-          orderMerChant:'京东小店',
-          orderDate:'2019-2-1',
-          orderStauts:2
+          url: "/static/hotRecomment/shoes/1/3.jpg",
+          name: "AIR Jordan 1 黑舌",
+          price: "584",
+          level: 2,
+          receiptName: "李磊",
+          receiptPhone: "13245678910",
+          receiptAddress: "北京市海淀区康庄道",
+          orderNum: 13161616181615,
+          orderMerChant: "京东小店",
+          orderDate: "2019-2-1",
+          orderStauts: 2
         },
         {
-          url:'/static/hotRecomment/shoes/1/4.jpg',
-          name:'AIR Jordan 1 骚粉',
-          price:'352',
-          level:3,
-          receiptName:'李磊',
-          receiptPhone:'13245678910',
-          receiptAddress:'北京市海淀区康庄道',
-          orderNum:1316162123231615,
-          orderMerChant:'京东小店',
-          orderDate:'2019-1-5',
-          orderStauts:3
+          url: "/static/hotRecomment/shoes/1/4.jpg",
+          name: "AIR Jordan 1 骚粉",
+          price: "352",
+          level: 3,
+          receiptName: "李磊",
+          receiptPhone: "13245678910",
+          receiptAddress: "北京市海淀区康庄道",
+          orderNum: 1316162123231615,
+          orderMerChant: "京东小店",
+          orderDate: "2019-1-5",
+          orderStauts: 3
         }
-      ]
+      ],
+      // 零售
+      retailList: [
+        {
+          id: 1,
+          url: "",
+          name: "小熊饼干",
+          price: "20",
+          des: "新出炉的小熊饼干，香",
+          level: 1,
+          createTime: "2019-8-8",
+          shape: "新款",
+          color: "红色"
+        },
+        {
+          id: 2,
+          url: "",
+          name: "三只松鼠",
+          price: "20",
+          des: "新出炉的小熊饼干，香",
+          level: 1,
+          createTime: "2019-6-2",
+          shape: "新款",
+          color: "棕色"
+        },
+        {
+          id: 3,
+          url: "",
+          name: "皮皮虾",
+          price: "60",
+          des: "新出炉的小熊饼干，香",
+          level: 2,
+          createTime: "2019-7-5",
+          shape: "新款",
+          color: "红色"
+        }
+      ],
     };
   },
   methods: {
@@ -380,11 +559,11 @@ export default {
       // 可以获取到当前id，然后发起请求到后台将这条数据删除，然后重新赋值给tableData
     },
 
-    // 关闭新建遮罩
-    addClose(done) {
-      (this.newAddress.name = ""),
-        (this.newAddress.phone = ""),
-        (this.newAddress.address = "");
+    // 请求-确定新建
+    suerAdd: function(param) {
+      this.addDialog = false;
+      const newInfo = this.newAddress;
+      // newInfo就是新建的对象，包含收货人/联系方式/收货地址三条信息，发送到后台添加到收货地址列表里，将新数据返回，赋值给tableData
     },
     // 取消新建
     cancelAdd: function(param) {
@@ -393,15 +572,19 @@ export default {
         (this.newAddress.address = "");
       this.addDialog = false;
     },
-    // 请求-确定新建
-    suerAdd: function(param) {
-      this.addDialog = false;
-      const newInfo = this.newAddress;
-      // newInfo就是新建的对象，包含收货人/联系方式/收货地址三条信息，发送到后台添加到收货地址列表里，将新数据返回，赋值给tableData
+    // 关闭新建遮罩
+    addClose(done) {
+      (this.newAddress.name = ""),
+        (this.newAddress.phone = ""),
+        (this.newAddress.address = "");
     },
 
-    // 关闭修改遮罩
-    alterClose(done) {},
+    // 请求-确定修改
+    sureAlter: function(param) {
+      this.AlterDialog = false;
+      const keyword = this.alterItem;
+      // 发起请求--将这个对象发到后台进行修改--然后返回新的收货地址数组--重新赋值给tableData
+    },
     // 取消修改
     cancelAlter: function(param) {
       for (let key in this.alterItem) {
@@ -409,11 +592,61 @@ export default {
       }
       this.AlterDialog = false;
     },
-    // 请求-确定修改
-    sureAlter: function(param) {
-      this.AlterDialog = false;
-      const keyword = this.alterItem;
-      // 发起请求--将这个对象发到后台进行修改--然后返回新的收货地址数组--重新赋值给tableData
+    // 关闭修改遮罩
+    alterClose(done) {},
+
+    // 新建零售
+    // 打开新建零售
+    openNewAlter: function(param) {
+      this.newAlterDialog = true;
+    },
+    // 确定新建
+    sureNewAlter: function(param) {
+      var date = timeDeal.timeDeal();
+      this.newAlter.createTime = date;
+      // 发起请求--将this.newAlter作为对象发送到后台--返回所有的数据重新赋值
+      this.newAlterDialog = false;
+    },
+    // 取消新建
+    cancelNewAlter: function(param) {
+      for (var key in this.newAlter) {
+        this.newAlter[key] = "";
+      }
+      this.newAlterDialog = false;
+    },
+    // 关闭窗口
+    newAlterClose: function(param) {
+      for (var key in this.newAlter) {
+        this.newAlter[key] = "";
+      }
+    },
+
+    // 修改零售信息
+    // 打开遮罩
+    editRetail: function(param) {
+      this.editAlter =JSON.parse(JSON.stringify(param))
+      this.editAlter.level = String(this.editAlter.level)
+      this.editAlterDialog = true
+    },
+    // 关闭遮罩
+    editAlterClose: function(param) {
+      for(let key in this.editAlter) {
+        this.editAlter[key] = ''
+      }
+      this.editAlterDialog = false
+    },
+    // 确定修改
+    sureEditAlter: function(param) {
+      const keyWord = this.editAlter
+      // 发起请求--修改数据
+      this.editAlterDialog = false
+    },
+    // 取消修改
+    cancelEditAlter: function(param) {
+      for(let key in this.editAlter) {
+        this.editAlter[key] = ''
+      }
+      this.editAlterDialog = false
     }
   },
   beforeMount: function(param) {
@@ -434,6 +667,7 @@ export default {
 @import "../css/topBanner.less";
 @import "../css/footer.less";
 @import "../css/personOrder.less";
+@import "../css/personRetail.less";
 .topCover {
   width: 100%;
   height: 100%;

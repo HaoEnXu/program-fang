@@ -1,0 +1,144 @@
+.retailCover {
+  width: 100%;
+  height: 100%;
+}
+.retailCover .retailItem {
+  width: calc(100% - 14px);
+  height: 100px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: row;
+  margin: 10px 0;
+  border: 2px solid #000;
+  padding-left: 10px;
+  position: relative;
+}
+.retailCover .retailItem .RI_img {
+  display: inline-block;
+  width: 80px;
+  height: 80px;
+  background-color: #aaa;
+  margin-right: 20px;
+}
+.retailCover .retailItem .RI_name {
+  font-size: 18px;
+  font-weight: bold;
+  margin-right: 20px;
+}
+.retailCover .retailItem .RI_price {
+  font-size: 18px;
+  color: #f56c6c;
+  margin-right: 20px;
+}
+.retailCover .retailItem .RI_description {
+  font-size: 16px;
+  font-weight: bold;
+  color: #7e7e7e;
+  margin-right: 20px;
+}
+.retailCover .retailItem .RI_level {
+  font-size: 16px;
+  color: #000;
+  font-weight: bold;
+  text-shadow: 0px 2px 2px #f5d5a6;
+  margin-right: 20px;
+}
+.retailCover .retailItem .RI_createTime {
+  font-size: 16px;
+  font-weight: bold;
+  margin-right: 20px;
+}
+.retailCover .retailItem .RI_shape {
+  font-size: 18px;
+  font-weight: bold;
+  margin-right: 20px;
+}
+.retailCover .retailItem .RI_color {
+  font-size: 16px;
+  margin-right: 20px;
+}
+.retailCover .retailItem .retail_btn {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 200px;
+  height: 80px;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+  align-items: center;
+}
+.retailCover .retailItem .retail_btn .retail_modify {
+  width: 70px;
+  padding: 5px;
+  border: 1px solid #67C23A;
+  color: #67C23A;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.retailCover .retailItem .retail_btn .retail_modify:hover {
+  background-color: #67C23A;
+  color: #fff;
+}
+.retailCover .retailItem .retail_btn .retail_delete {
+  width: 70px;
+  padding: 5px;
+  border: 1px solid #ff8585;
+  cursor: pointer;
+  color: lightcoral;
+  transition: all 0.3s;
+}
+.retailCover .retailItem .retail_btn .retail_delete:hover {
+  background-color: #ff8585;
+  color: #fff;
+}
+.retailCover .newRetail {
+  width: 100%;
+  height: 60px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: row;
+}
+.retailCover .newRetail .newRetailBtn {
+  display: block;
+  width: 120px;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  background-color: #000;
+  box-shadow: 0 2px 12px 0 #ccc;
+  border-radius: 20px;
+  cursor: pointer;
+  color: #fff;
+  transition: all 0.2s;
+}
+.retailCover .newRetail .newRetailBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 2px 12px 0 #999999;
+}
+.newAlter {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  flex-direction: column;
+}
+.newAlter .newAlterInfo {
+  width: 100%;
+  height: 50px;
+  margin: 10px 0;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: row;
+}
+.newAlter .newAlterInfo .newAlterTips {
+  display: inline-block;
+  width: 100px;
+  height: 50px;
+  line-height: 50px;
+  text-align: left;
+}
