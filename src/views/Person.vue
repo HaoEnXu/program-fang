@@ -391,7 +391,7 @@ export default {
       addDialog: false,
       AlterDialog: false,
       newAlterDialog: false,
-      editAlterDialog:false,
+      editAlterDialog: false,
       // 新的收货信息
       newAddress: {
         name: "",
@@ -500,7 +500,7 @@ export default {
           shape: "新款",
           color: "红色"
         }
-      ],
+      ]
     };
   },
   methods: {
@@ -523,13 +523,11 @@ export default {
     toShopCar: function(params) {
       this.$router.push("/shopCar");
     },
-
     // 选择item
     chooseItem: function(param) {
       this.current_banner = param;
       this.current_main = param;
     },
-
     // 请求-修改性别
     chooseSex: function(e) {
       e.target.id == "man" ? (this.baseUser.sex = 0) : (this.baseUser.sex = 1);
@@ -558,7 +556,6 @@ export default {
       console.log(param);
       // 可以获取到当前id，然后发起请求到后台将这条数据删除，然后重新赋值给tableData
     },
-
     // 请求-确定新建
     suerAdd: function(param) {
       this.addDialog = false;
@@ -578,7 +575,6 @@ export default {
         (this.newAddress.phone = ""),
         (this.newAddress.address = "");
     },
-
     // 请求-确定修改
     sureAlter: function(param) {
       this.AlterDialog = false;
@@ -594,8 +590,6 @@ export default {
     },
     // 关闭修改遮罩
     alterClose(done) {},
-
-    // 新建零售
     // 打开新建零售
     openNewAlter: function(param) {
       this.newAlterDialog = true;
@@ -620,33 +614,37 @@ export default {
         this.newAlter[key] = "";
       }
     },
-
     // 修改零售信息
     // 打开遮罩
     editRetail: function(param) {
-      this.editAlter =JSON.parse(JSON.stringify(param))
-      this.editAlter.level = String(this.editAlter.level)
-      this.editAlterDialog = true
+      this.editAlter = JSON.parse(JSON.stringify(param));
+      this.editAlter.level = String(this.editAlter.level);
+      this.editAlterDialog = true;
     },
     // 关闭遮罩
     editAlterClose: function(param) {
-      for(let key in this.editAlter) {
-        this.editAlter[key] = ''
+      for (let key in this.editAlter) {
+        this.editAlter[key] = "";
       }
-      this.editAlterDialog = false
+      this.editAlterDialog = false;
     },
     // 确定修改
     sureEditAlter: function(param) {
-      const keyWord = this.editAlter
+      const keyWord = this.editAlter;
       // 发起请求--修改数据
-      this.editAlterDialog = false
+      this.editAlterDialog = false;
     },
     // 取消修改
     cancelEditAlter: function(param) {
-      for(let key in this.editAlter) {
-        this.editAlter[key] = ''
+      for (let key in this.editAlter) {
+        this.editAlter[key] = "";
       }
-      this.editAlterDialog = false
+      this.editAlterDialog = false;
+    },
+    // 删除
+    deleteRetail: function(param) {
+      console.log(param)
+      // 发起请求--删除数据--返回重新赋值
     }
   },
   beforeMount: function(param) {
