@@ -25,7 +25,7 @@
         width: 100px;
         height: 50px;
         background-image: url('../assets//image/logo4.png');
-        background-size: 100% ;
+        background-size: 100%;
         background-repeat: no-repeat;
         background-position: left;
       }
@@ -88,16 +88,141 @@
         }
       }
     }
+
     .main_content {
+      width: 100%;
+      height: 100%;
+
+      .search {
+        width: 400px;
+        margin: 20px 0;
+      }
+
+      .el-pagination {
+        margin: 20px;
+      }
+
+      .saleGood {
         width: 100%;
-        height: 100%;
-        .search {
-            width: 400px;
-            margin: 20px 0;
+        padding-top: 20px;
+        display: flex;
+        justify-content: flex-start;
+        align-items: left;
+        flex-direction: column;
+
+        .el-input {
+          width: 400px;
+          margin-left: 25px;
         }
-        .el-pagination {
-            margin: 20px;
+
+        .SG_List {
+          width: 100%;
+          display: flex;
+          flex-flow: row wrap;
+          justify-content: flex-start;
+          align-items: center;
+          padding-top: 20px;
+
+          .SG_Item {
+            width: 21%;
+            height: 260px;
+            margin: 10px 2%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-direction: column;
+            position: relative;
+            border-radius: 5px;
+            overflow: hidden;
+            box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+
+            .SG_cover {
+              position: absolute;
+              width: 100%;
+              height: 100%;
+              left: 0;
+              top: 0;
+              background-color: rgba(37, 37, 37, 0.9);
+              z-index: 5;
+              opacity: 0;
+              transition: all .3s;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              flex-direction: column;
+
+              .SG_detail {
+                width: 100px;
+                height: 40px;
+                line-height: 40px;
+                text-align: center;
+                background-color: #67C23A;
+                border-radius: 5px;
+                color: #fff;
+                cursor: pointer;
+                margin-bottom: 20px;
+              }
+
+              .SG_delete {
+                width: 100px;
+                height: 40px;
+                line-height: 40px;
+                text-align: center;
+                background-color: #F56C6C;
+                border-radius: 5px;
+                color: #fff;
+                cursor: pointer;
+              }
+            }
+
+            &:hover {
+              .SG_cover {
+                opacity: 1;
+              }
+            }
+
+            .SG_img {
+              width: 100%;
+              height: 200px;
+              background-color: #aaa;
+            }
+
+            .SG_info {
+              width: calc(100% - 10px);
+              height: 60px;
+              padding: 5px;
+              display: flex;
+              justify-content: space-around;
+              align-items: flex-start;
+              flex-direction: column;
+
+              .SG_name {
+                font-size: 16px;
+                font-weight: bold;
+                display: inline-block;
+                width: 100%;
+                overflow: hidden;
+                text-align: left;
+              }
+
+              .SG_price {
+                font-size: 16px;
+                color: lightcoral;
+              }
+
+              .SG_des {
+                display: inline-block;
+                width: 100%;
+                overflow: hidden;
+                font-size: 12px;
+                text-align: left;
+              }
+
+              // 
+            }
+          }
         }
+      }
     }
   }
 }

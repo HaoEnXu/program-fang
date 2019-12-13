@@ -207,3 +207,129 @@ Mock.mock(`/userList`, `get`, (option) => {
     }]
   }
 })
+// 请求在售商品
+Mock.mock(`/saleGood`, `get`, (option) => {
+  return {
+    data: [{
+      "url": "",
+      "name": "小熊饼干",
+      "price": "20",
+      "des": "超市新上架的小熊饼干，未拆，转售",
+      "level": 1,
+      "color": "green",
+      "shape": 1,
+      "type":1,
+      "status": 1
+    }, {
+      "url": "",
+      "name": "小熊饼干",
+      "price": "20",
+      "des": "超市新上架的小熊饼干，未拆，转售",
+      "level": 1,
+      "color": "green",
+      "shape": 1,
+      "type":1,
+      "status": 1
+    }, {
+      "url": "",
+      "name": "小熊饼干",
+      "price": "20",
+      "des": "超市新上架的小熊饼干，未拆，转售",
+      "level": 1,
+      "color": "green",
+      "shape": 1,
+      "type":1,
+      "status": 1
+    }, {
+      "url": "",
+      "name": "小熊饼干",
+      "price": "20",
+      "des": "超市新上架的小熊饼干，未拆，转售",
+      "level": 1,
+      "color": "green",
+      "shape": 1,
+      "type":1,
+      "status": 1
+    }, {
+      "url": "",
+      "name": "小熊饼干",
+      "price": "20",
+      "des": "超市新上架的小熊饼干，未拆，转售",
+      "level": 1,
+      "color": "green",
+      "shape": 1,
+      "type":1,
+      "status": 1
+    }, {
+      "url": "",
+      "name": "小熊饼干",
+      "price": "20",
+      "des": "超市新上架的小熊饼干，未拆，转售",
+      "level": 1,
+      "color": "green",
+      "shape": 1,
+      "type":1,
+      "status": 1
+    }, {
+      "url": "",
+      "name": "小熊饼干",
+      "price": "20",
+      "des": "超市新上架的小熊饼干，未拆，转售",
+      "level": 1,
+      "color": "green",
+      "shape": 1,
+      "type":1,
+      "status": 1
+    }, {
+      "url": "",
+      "name": "小熊饼干",
+      "price": "20",
+      "des": "超市新上架的小熊饼干，未拆，转售",
+      "level": 1,
+      "color": "green",
+      "shape": 1,
+      "type":1,
+      "status": 1
+    }, {
+      "url": "",
+      "name": "小熊饼干",
+      "price": "20",
+      "des": "超市新上架的小熊饼干，未拆，转售",
+      "level": 1,
+      "color": "green",
+      "shape": 1,
+      "type":1,
+      "status": 1
+    }, {
+      "url": "",
+      "name": "小熊饼干",
+      "price": "20",
+      "des": "超市新上架的小熊饼干，未拆，转售",
+      "level": 1,
+      "color": "green",
+      "shape": 1,
+      "type":1,
+      "status": 1
+    }, {
+      "url": "",
+      "name": "小熊饼干",
+      "price": "20",
+      "des": "超市新上架的小熊饼干，未拆，转售",
+      "level": 1,
+      "color": "green",
+      "shape": 1,
+      "type":1,
+      "status": 1
+    }, {
+      "url": "",
+      "name": "小熊饼干",
+      "price": "20",
+      "des": "超市新上架的小熊饼干，未拆，转售",
+      "level": 1,
+      "color": "green",
+      "shape": 1,
+      "type":1,
+      "status": 1
+    }]
+  }
+})
