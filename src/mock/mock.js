@@ -333,3 +333,20 @@ Mock.mock(`/saleGood`, `get`, (option) => {
     }]
   }
 })
+Mock.mock(`/auditList`,'get',(option) => {
+  return {
+    data:[
+      {
+        "url":"",
+        "name":"三只松鼠",
+        "price":"125",
+        "des":"厂家直销，货真价实，欢迎选购",
+        "level":"1",
+        "status":"1",
+        "shape":"新款",
+        "color":"红色",
+        "userName":"猪猪侠"
+      }
+    ]
+  }
+})

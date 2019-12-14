@@ -112,7 +112,6 @@
 
         .el-input {
           width: 400px;
-          margin-left: 25px;
         }
 
         .SG_List {
@@ -223,6 +222,116 @@
           }
         }
       }
+
+      .auditGood {}
     }
   }
+}
+
+// 商品详情遮罩
+.SG_dialog {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+  align-items: center;
+
+  .dialog_item {
+    width: 70%;
+    height: 50px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: row;
+
+    .DI_tips {
+      width: 150px;
+      height: 50px;
+      line-height: 50px;
+      text-align: left;
+      font-size: 16px;
+    }
+
+    .DI_info {
+      font-size: 16px;
+      font-weight: bold;
+      overflow: hidden;
+    }
+  }
+}
+
+// 待审核遮罩
+.AGcover {
+  width: 100%;
+
+  .AG_topInfo {
+    width: 100%;
+    .AG_base {
+      width: 100%;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      flex-direction: column;
+      .AG_img {
+        width: 500px;
+        height: 300px;
+        background-color: #aaa;
+      }
+      ul{
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        width: 500px;
+        li {
+          margin: 5px 0;
+          display: flex;
+          justify-content: flex-start;
+          flex-direction: row;
+          align-items: center;
+          .AGB_tips {
+            display: inline-block;
+            width: 100px;
+            height: 30px;
+            line-height: 30px;
+            font-size: 16px;
+            text-align: center;
+          }
+          .AGB_content {
+            display: inline-block;
+            font-size: 16px;
+            font-weight: bold;
+            text-align: left;
+          }
+        }
+      }
+    }
+    
+  }
+  .AG_bottomArea {
+    width: 100%;
+    height: 60px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: row;
+    span {
+      display: inline-block;
+      width: 100px;
+      height: 30px;
+      line-height: 30px;
+      text-align:center;
+      padding: 5px;
+      border: 2px solid #000;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 18px;
+      transition: all .3s;
+      &:hover {
+        background-color: #000;
+        color: #fff;
+      }
+    }
+  }
+
 }
